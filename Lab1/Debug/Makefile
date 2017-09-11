@@ -38,6 +38,7 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../Lab1.c \
+../testMemory.c \
 ../uart.c
 
 
@@ -49,18 +50,22 @@ ASM_SRCS +=
 
 OBJS +=  \
 Lab1.o \
+testMemory.o \
 uart.o
 
 OBJS_AS_ARGS +=  \
 Lab1.o \
+testMemory.o \
 uart.o
 
 C_DEPS +=  \
 Lab1.d \
+testMemory.d \
 uart.d
 
 C_DEPS_AS_ARGS +=  \
 Lab1.d \
+testMemory.d \
 uart.d
 
 OUTPUT_FILE_PATH +=Lab1.elf
@@ -77,6 +82,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

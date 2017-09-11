@@ -4,5 +4,7 @@
 
 Lab1.c
 
+testMemory.c
+
 uart.c
 
