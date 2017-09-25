@@ -11,22 +11,27 @@
 #include <avr/sleep.h>
 #include "uart.h"
 #include "adc.h"
+#include "oled.h"
+#include "joystick.h"
 volatile char* oled_adresse = 0x1200;
 volatile char* adc_adresse = 0x1400;
 volatile char* ram_adresse = 0x1800;
 int main(void)
 {
+
 	DDRB = 0b00000000;
 	adc_init();
 	EXT_MEM_Init();
     USART_Init(31);
-	//SRAM_test();
-	//printf("Hei det funker enda\n");
-	printf("noe funker hvertfall");
+	oled_init();
+	oled_reset();
+	oled_print("KALVEN MIN ER VELDIG HYGGELIG");
+	initialize_menu();
 	while(1)
     {
-		struct Joystick temp = read_joystick_position(channel1,channel2);
-		struct Slider temp2 = read_slider_position(channel3,channel4);
+		joystick_navigate_vertical();
+		//struct Joystick temp = read_joystick_position(channel1,channel2);
+		//struct Slider temp2 = read_slider_position(channel3,channel4);
 		//printf("slider1: %i, slider2: %i \n",temp2.slider1,temp2.slider2);
 		//printf("X pos: %i, Y pos: %i \n",temp.x_pos,temp.y_pos);
 		//read_slider_position(channel3,channel4);
