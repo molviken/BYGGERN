@@ -88,7 +88,7 @@ void oled_print(char* word ){
 		oled_print_letter(word[i], page, coloumn_start,coloumn_end);
 		coloumn_start += 0x09;
 		coloumn_end += 0x09;
-		printf("Bokstaven er: %c , coloumn_start: %u , coloumn_end: %u \n",word[i], coloumn_start, coloumn_end);
+		//printf("Bokstaven er: %c , coloumn_start: %u , coloumn_end: %u \n",word[i], coloumn_start, coloumn_end);
 		if(word[i] == 32){
 			page +=0x01;
 			coloumn_start = 0x09;

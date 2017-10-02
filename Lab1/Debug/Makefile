@@ -38,9 +38,12 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../adc.c \
+../CAN_bus.c \
 ../joystick.c \
 ../Lab1.c \
+../MCPkontroll.c \
 ../oled.c \
+../SPI.c \
 ../testMemory.c \
 ../uart.c
 
@@ -53,33 +56,45 @@ ASM_SRCS +=
 
 OBJS +=  \
 adc.o \
+CAN_bus.o \
 joystick.o \
 Lab1.o \
+MCPkontroll.o \
 oled.o \
+SPI.o \
 testMemory.o \
 uart.o
 
 OBJS_AS_ARGS +=  \
 adc.o \
+CAN_bus.o \
 joystick.o \
 Lab1.o \
+MCPkontroll.o \
 oled.o \
+SPI.o \
 testMemory.o \
 uart.o
 
 C_DEPS +=  \
 adc.d \
+CAN_bus.d \
 joystick.d \
 Lab1.d \
+MCPkontroll.d \
 oled.d \
+SPI.d \
 testMemory.d \
 uart.d
 
 C_DEPS_AS_ARGS +=  \
 adc.d \
+CAN_bus.d \
 joystick.d \
 Lab1.d \
+MCPkontroll.d \
 oled.d \
+SPI.d \
 testMemory.d \
 uart.d
 
@@ -97,6 +112,12 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
 
 
 

@@ -13,6 +13,8 @@
 #include "adc.h"
 #include "oled.h"
 #include "joystick.h"
+#include "SPI.h"
+#include "CAN_bus.h"
 volatile char* oled_adresse = 0x1200;
 volatile char* adc_adresse = 0x1400;
 volatile char* ram_adresse = 0x1800;
@@ -21,6 +23,7 @@ int main(void)
 
 	DDRB = 0b00000000;
 	adc_init();
+	SPI_MasterInit();
 	EXT_MEM_Init();
     USART_Init(31);
 	oled_init();
@@ -29,7 +32,9 @@ int main(void)
 	initialize_menu();
 	while(1)
     {
-		joystick_navigate_vertical();
+		//slider_button();
+		//joystick_pressed();
+		//joystick_navigate_vertical();
 		//struct Joystick temp = read_joystick_position(channel1,channel2);
 		//struct Slider temp2 = read_slider_position(channel3,channel4);
 		//printf("slider1: %i, slider2: %i \n",temp2.slider1,temp2.slider2);

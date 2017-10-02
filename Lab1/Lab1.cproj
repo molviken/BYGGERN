@@ -115,6 +115,12 @@
     <Compile Include="adc.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="CAN_bus.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CAN_bus.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="fonts.h">
       <SubType>compile</SubType>
     </Compile>
@@ -127,10 +133,25 @@
     <Compile Include="Lab1.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="MCP2515.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCPkontroll.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCPkontroll.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="oled.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="oled.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SPI.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SPI.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="testMemory.c">

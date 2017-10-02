@@ -9,6 +9,7 @@
 #include <avr/sleep.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 #define channel1 (0x4)
 #define channel2 (0x5)
 #define channel3 (0x6)
@@ -16,8 +17,13 @@
 struct Menu_position {
 	uint8_t current_page;
 	uint8_t prev_page;
+	bool move;
+	bool pressed1;
+	bool pressed2;
 	};
 struct Joystick read_joystick_position(uint8_t channel_one, uint8_t channel_two);
 struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two);
 void initialize_menu();
 void joystick_navigate_vertical();
+uint8_t joystick_pressed();
+uint8_t slider_button();
