@@ -29,8 +29,9 @@ void SPI_MasterTransmit(char cData){
 char SPI_MasterReceive(void)
 {
 	/* Wait for reception complete */
+	SPI_MasterTransmit(0);
 	while	(!(SPSR & (1<<SPIF)));
-	
 	/* Return data register */
+	
 	return	SPDR;
 }

@@ -7,50 +7,65 @@
 #include "MCPkontroll.h"
 #include "MCP2515.h"
 
+void select_CAN(void){
+	clear_bit(PORTB, PB4);
+}
+
+void deselect_CAN(void){
+	set_bit(PORTB, PB4);
+}
+
 void MCP_init(){
 	SPI_MasterInit();
 	MCP_reset();
 }
 
 void MCP_write(uint8_t data, uint8_t address){
-	clear_bit(PORTB, PB4);
+	select_CAN();
+	
 	SPI_MasterTransmit(MCP_WRITE);
 	SPI_MasterTransmit(address);
-	SPI_MasterTransmit(data);
-	set_bit(PORTB,PB4);
+	SPI_MasterTransmit(data);	
+	deselect_CAN();
 }
 
 uint8_t MCP_read(uint8_t address){
-	clear_bit(PORTB, PB4);
+	uint8_t temp;
+	
+	select_CAN();
+	
 	SPI_MasterTransmit(MCP_READ);
 	SPI_MasterTransmit(address);
-	set_bit(PORTB,PB4);
-	return SPI_MasterReceive();
+	temp = SPI_MasterReceive();
+	deselect_CAN();
+	
+	return temp;
 }
 
 void MCP_rts(uint8_t reg){
-	clear_bit(PORTB, PB4);
+	select_CAN();
 	SPI_MasterTransmit(MCP_RTS + reg);
-	set_bit(PORTB,PB4);	
+	deselect_CAN();	
 }
 
 uint8_t MCP_read_status(){
-	clear_bit(PORTB, PB4);
+	select_CAN();
 	SPI_MasterTransmit(MCP_READ_STATUS);
-	set_bit(PORTB,PB4);	
+	deselect_CAN();
 	return SPI_MasterReceive();
 }
 
 void MCP_bit_mod(uint8_t address, uint8_t m_byte, uint8_t d_byte){
-	clear_bit(PORTB, PB4);
+	select_CAN();
 	SPI_MasterTransmit(MCP_BITMOD);
 	SPI_MasterTransmit(address);
 	SPI_MasterTransmit(m_byte);
 	SPI_MasterTransmit(d_byte);
-	set_bit(PORTB,PB4);	
+	deselect_CAN();
 }
 
 void MCP_reset(){
-	clear_bit(PORTB, PB4);
+	select_CAN();
 	SPI_MasterTransmit(MCP_RESET);
+	deselect_CAN();
 }

@@ -12,6 +12,8 @@
 #include "MCP2515.h"
 #include "uart.h"
 
+void select_CAN(void);
+void deselect_CAN(void);
 void MCP_init();
 void MCP_write(uint8_t data, uint8_t address);
 uint8_t MCP_read(uint8_t address);

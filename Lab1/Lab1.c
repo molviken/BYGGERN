@@ -24,14 +24,16 @@ int main(void)
 
 	DDRB = 0b00000000;
 	adc_init();
-	CAN_init();
-	CAN_int_vect();
+	//CAN_init();
+	//CAN_int_vect();
 	EXT_MEM_Init();
     USART_Init(31);
 	oled_init();
 	oled_reset();
-	oled_print("KALVEN MIN ER VELDIG HYGGELIG");
+	oled_print("Meny1 Meny2 Meny3 Meny4 Meny5");
 	initialize_menu();
+	MCP_init();
+	printf("Init er good\n");
 	
 	/*
 	struct CAN_message first_message;
@@ -46,10 +48,15 @@ int main(void)
 	printf("first message data[0] = %x", first_message.data[0]) 
 	printf("copy message data[0} = %x \n", copy_message.data[0]);*/
 	
+	
+	uint8_t data = 0x55;
+	MCP_write(data, 0b00110110);
+	
+	uint8_t test = MCP_read(0b00110110);
+	printf("data = %d data lest = %d \n\n",data, test);
 	while(1)
     {
-		printf("Hallo\n");
-		_delay_ms(100);
+		
 		//slider_button();
 		//joystick_pressed();
 		//joystick_navigate_vertical();
@@ -60,6 +67,6 @@ int main(void)
 		//read_slider_position(channel3,channel4);
 		//read_joystick_position(channel1,channel2);
 		//adc_read(channel2);
-		
+		_delay_ms(100);
 	}
 }
