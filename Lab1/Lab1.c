@@ -15,6 +15,7 @@
 #include "joystick.h"
 #include "SPI.h"
 #include "CAN_bus.h"
+#include "MCPkontroll.h"
 volatile char* oled_adresse = 0x1200;
 volatile char* adc_adresse = 0x1400;
 volatile char* ram_adresse = 0x1800;
@@ -23,15 +24,32 @@ int main(void)
 
 	DDRB = 0b00000000;
 	adc_init();
-	SPI_MasterInit();
+	CAN_init();
+	CAN_int_vect();
 	EXT_MEM_Init();
     USART_Init(31);
 	oled_init();
 	oled_reset();
 	oled_print("KALVEN MIN ER VELDIG HYGGELIG");
 	initialize_menu();
+	
+	/*
+	struct CAN_message first_message;
+	first_message.id = 0b10110010;
+	first_message.data[0] = 0xFF;
+	CAN_transmit(first_message);
+	
+	struct CAN_message copy_message;
+	copy_message = CAN_receive();
+	printf("first message id = %x", first_message.id); 
+	printf("copy message id = %x \n", copy_message.id);
+	printf("first message data[0] = %x", first_message.data[0]) 
+	printf("copy message data[0} = %x \n", copy_message.data[0]);*/
+	
 	while(1)
     {
+		printf("Hallo\n");
+		_delay_ms(100);
 		//slider_button();
 		//joystick_pressed();
 		//joystick_navigate_vertical();
@@ -42,5 +60,6 @@ int main(void)
 		//read_slider_position(channel3,channel4);
 		//read_joystick_position(channel1,channel2);
 		//adc_read(channel2);
+		
 	}
 }

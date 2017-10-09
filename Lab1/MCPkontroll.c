@@ -8,6 +8,7 @@
 #include "MCP2515.h"
 
 void MCP_init(){
+	SPI_MasterInit();
 	MCP_reset();
 }
 
@@ -19,11 +20,12 @@ void MCP_write(uint8_t data, uint8_t address){
 	set_bit(PORTB,PB4);
 }
 
-void MCP_read(uint8_t address){
+uint8_t MCP_read(uint8_t address){
 	clear_bit(PORTB, PB4);
 	SPI_MasterTransmit(MCP_READ);
 	SPI_MasterTransmit(address);
 	set_bit(PORTB,PB4);
+	return SPI_MasterReceive();
 }
 
 void MCP_rts(uint8_t reg){
