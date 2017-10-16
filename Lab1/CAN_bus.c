@@ -14,19 +14,32 @@ void CAN_init(){
 	MCP_init();
 	// Turn mask/filters off
 	MCP_bit_mod(MCP_RXB0CTRL, 0b01100100, 0xFF);
+	
 	// Set LoopBack mode on
 	MCP_bit_mod(MCP_CANCTRL, MODE_MASK, MODE_LOOPBACK); // MCP_CANCTRL = MODE_LOOPBACK;
+	
 	// Enable interrupt when a valid message has been received
 	MCP_bit_mod(MCP_CANINTE, 0x01, 0x01);
+	if ((MCP_read(MCP_CANSTAT) & MODE_MASK) != MODE_LOOPBACK)
+	{
+		printf("NOT in loopback mode!\n");
+	}
+	
+	char temp = MCP_read(MCP_CANCTRL);
 	
 }
 
 int CAN_transmit(struct CAN_message message){
 	if (CAN_completed_transmit()){
 		
+		// Setting the standard identifier
 		MCP_write(message.id >> 3, MCP_TXB0SIDH);
 		MCP_write((message.id << 5)&0x70, MCP_TXB0SIDL);
-		MCP_write(message.length, MCP_TXB0DLC);
+		
+		// setting data length
+		MCP_write((0x0F) & message.length, MCP_TXB0DLC);
+		
+		// setting data bytes
 		for (uint8_t i = 0x00; i< message.length; i++){
 			MCP_write(message.data[i], MCP_TXB0D0+i);
 		}
@@ -71,8 +84,8 @@ struct CAN_message CAN_receive(void){
 		new_message.id = (MCP_read(MCP_TXB0SIDH) << 3 | MCP_read(MCP_TXB0SIDL) >> 5);
 		
 		// Get the length (only last 4 bits)
-		
 		new_message.length = (0x0F) & (MCP_read(MCP_RXB0DLC));
+		
 		// Get the required data from RXB0DM
 		for(uint8_t i = 0; i < new_message.length; i++){
 			new_message.data[i] = MCP_read(MCP_RXB0D0 + i);

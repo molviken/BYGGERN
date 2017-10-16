@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 //#include <time.h>
+
 struct Slider{
 	int slider1;
 	int slider2;

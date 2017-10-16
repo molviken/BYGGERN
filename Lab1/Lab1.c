@@ -14,49 +14,34 @@
 #include "oled.h"
 #include "joystick.h"
 #include "SPI.h"
-#include "CAN_bus.h"
 #include "MCPkontroll.h"
+#include "CAN_bus.h"
+#include "MCP2515.h"
+
 volatile char* oled_adresse = 0x1200;
 volatile char* adc_adresse = 0x1400;
 volatile char* ram_adresse = 0x1800;
 int main(void)
 {
-
-	DDRB = 0b00000000;
-	adc_init();
-	//CAN_init();
-	//CAN_int_vect();
+	
 	EXT_MEM_Init();
-    USART_Init(31);
+	USART_Init(31);
 	oled_init();
 	oled_reset();
-	oled_print("Meny1 Meny2 Meny3 Meny4 Meny5");
+	adc_init();
 	initialize_menu();
-	MCP_init();
+	
+	DDRB = 0b00000000;
+	
+	CAN_init();
+	CAN_int_vect();
+	
 	printf("Init er good\n");
 	
-	/*
-	struct CAN_message first_message;
-	first_message.id = 0b10110010;
-	first_message.data[0] = 0xFF;
-	CAN_transmit(first_message);
-	
-	struct CAN_message copy_message;
-	copy_message = CAN_receive();
-	printf("first message id = %x", first_message.id); 
-	printf("copy message id = %x \n", copy_message.id);
-	printf("first message data[0] = %x", first_message.data[0]) 
-	printf("copy message data[0} = %x \n", copy_message.data[0]);*/
-	
-	
-	uint8_t data = 0x55;
-	MCP_write(data, 0b00110110);
-	
-	uint8_t test = MCP_read(0b00110110);
-	printf("data = %d data lest = %d \n\n",data, test);
 	while(1)
     {
-		
+		//MCP_write(0xff, 0x36);
+
 		//slider_button();
 		//joystick_pressed();
 		//joystick_navigate_vertical();

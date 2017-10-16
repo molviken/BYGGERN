@@ -21,11 +21,12 @@ void MCP_init(){
 }
 
 void MCP_write(uint8_t data, uint8_t address){
+	// printf("MCP_write data = %x, address = %x \n", data, address);
 	select_CAN();
 	
 	SPI_MasterTransmit(MCP_WRITE);
 	SPI_MasterTransmit(address);
-	SPI_MasterTransmit(data);	
+	SPI_MasterTransmit(data);
 	deselect_CAN();
 }
 
@@ -38,7 +39,7 @@ uint8_t MCP_read(uint8_t address){
 	SPI_MasterTransmit(address);
 	temp = SPI_MasterReceive();
 	deselect_CAN();
-	
+	// printf("I MCP_read, temp = %x, address = %x \n", temp, address);
 	return temp;
 }
 
@@ -68,4 +69,10 @@ void MCP_reset(){
 	select_CAN();
 	SPI_MasterTransmit(MCP_RESET);
 	deselect_CAN();
+	uint8_t mode = MCP_read(MCP_CANSTAT);
+	if ((mode&MODE_MASK)!=MODE_CONFIG)
+	{
+		printf("Not in config after reset\n");
+	}
+	
 }

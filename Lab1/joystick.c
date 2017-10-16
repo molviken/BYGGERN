@@ -35,6 +35,7 @@ struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two){
 	//printf("Slider 1: %i, Slider 2: %i \n", slider1,slider2);
 }
 void initialize_menu(){
+	oled_print("Meny1 Meny2 Meny3 Meny4 Meny5");
 	oled_print_letter('#',0x01,0x00,0x08);
 	pos.current_page = 0x01;
 }

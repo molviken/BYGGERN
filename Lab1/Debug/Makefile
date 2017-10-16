@@ -45,6 +45,7 @@ C_SRCS +=  \
 ../oled.c \
 ../SPI.c \
 ../testMemory.c \
+../tests.c \
 ../uart.c
 
 
@@ -63,6 +64,7 @@ MCPkontroll.o \
 oled.o \
 SPI.o \
 testMemory.o \
+tests.o \
 uart.o
 
 OBJS_AS_ARGS +=  \
@@ -74,6 +76,7 @@ MCPkontroll.o \
 oled.o \
 SPI.o \
 testMemory.o \
+tests.o \
 uart.o
 
 C_DEPS +=  \
@@ -85,6 +88,7 @@ MCPkontroll.d \
 oled.d \
 SPI.d \
 testMemory.d \
+tests.d \
 uart.d
 
 C_DEPS_AS_ARGS +=  \
@@ -96,6 +100,7 @@ MCPkontroll.d \
 oled.d \
 SPI.d \
 testMemory.d \
+tests.d \
 uart.d
 
 OUTPUT_FILE_PATH +=Lab1.elf
@@ -112,6 +117,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

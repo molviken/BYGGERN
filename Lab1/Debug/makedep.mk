@@ -18,5 +18,7 @@ SPI.c
 
 testMemory.c
 
+tests.c
+
 uart.c
 

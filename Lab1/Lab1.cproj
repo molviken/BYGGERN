@@ -158,6 +158,12 @@
       <SubType>compile</SubType>
       <Link>testMemory.c</Link>
     </Compile>
+    <Compile Include="tests.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="tests.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="uart.c">
       <SubType>compile</SubType>
     </Compile>

@@ -10,13 +10,12 @@
 #define DD_SS PB4
 #include "SPI.h"
 
-void SPI_MasterInit(void)
-{
-	/* Set MOSI and SCK output, all others input */
-	DDRB = (1<<DD_MOSI)|(1<<DD_SCK);
+void SPI_MasterInit(void){
+	/* Set MOSI,SCK and SS output, all others input */
+	DDRB = (1<<DD_MOSI) | (1<<DD_SCK) | (1 << DD_SS);
 	
 	/* Enable SPI, Master, set clock rate fck/16 */
-	SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0);
+	SPCR = (1<<SPE) | (1<<MSTR) | (1<<SPR0);
 }
 void SPI_MasterTransmit(char cData){
 	/* Start transmission */
@@ -26,12 +25,13 @@ void SPI_MasterTransmit(char cData){
 	while	(!(SPSR & (1<<SPIF)));
 }
 
-char SPI_MasterReceive(void)
-{
-	/* Wait for reception complete */
+char SPI_MasterReceive(void){
+	/* Send dummy data to read from slave */	
 	SPI_MasterTransmit(0);
-	while	(!(SPSR & (1<<SPIF)));
-	/* Return data register */
 	
+	/* Wait for reception complete */
+	// while	(!(SPSR & (1<<SPIF)));
+	
+	/* Return data register */
 	return	SPDR;
 }
