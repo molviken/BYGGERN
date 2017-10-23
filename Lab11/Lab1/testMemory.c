@@ -1,6 +1,6 @@
 #include <avr/io.h>
 #include <stdlib.h>
-#include "uart.h"
+#include "../../delte filer/uart.h"
 
 void EXT_MEM_Init(void){
 	set_bit(MCUCR,SRE);

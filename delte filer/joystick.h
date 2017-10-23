@@ -23,7 +23,6 @@ struct Menu_position {
 	};
 struct Joystick read_joystick_position(uint8_t channel_one, uint8_t channel_two);
 struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two);
-void initialize_menu();
 void joystick_navigate_vertical();
 uint8_t joystick_pressed();
 uint8_t slider_button();

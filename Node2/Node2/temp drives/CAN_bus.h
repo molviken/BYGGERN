@@ -12,7 +12,7 @@
 #include <util/delay.h>
 
 struct CAN_message{
-	int id;
+	uint8_t id;
 	uint8_t length;
 	int8_t data[8]; 
 	};

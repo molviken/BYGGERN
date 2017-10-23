@@ -4,9 +4,11 @@
  * Created: 25.09.2017 08:26:04
  *  Author: oystmol
  */ 
+struct Menu_position pos;
 int tall = 0;
 #include "oled.h"
-#include "fonts.h"
+#include "../../delte filer/joystick.h"
+#include "../../delte filer/fonts.h"
 int coloumn_counter = 0;
 void write_c(uint8_t command){
 	volatile char *oled_c = (char *) 0x1000;
@@ -101,4 +103,10 @@ void oled_print(char* word ){
 void oled_home(void){
 	oled_goto_page(0x00);
 	oled_goto_coloumn(0x00,0x00);
+}
+
+void initialize_menu(){
+	oled_print("Meny1 Meny2 Meny3 Meny4 Meny5");
+	oled_print_letter('#',0x01,0x00,0x08);
+	pos.current_page = 0x01;
 }

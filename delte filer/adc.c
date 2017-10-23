@@ -11,8 +11,9 @@
 #define loop_until_bit_is_clear( reg, bit ) while( test_bit( reg, bit ) )
 #include "adc.h"
 #include <string.h>
-//#include "uart.h"
-
+#include "uart.h"
+#include <avr/io.h>
+#include <util/delay.h>
 void adc_init(void){
 	set_bit(MCUCR,SRE);
 	set_bit(SFIOR,XMM2);
@@ -23,8 +24,7 @@ uint8_t adc_read(uint8_t channel){
 	
 	volatile char* adc_adr = (char *) 0x1400;
 	adc_adr[0] = channel;
-	//check inter, while inter == high
-	loop_until_bit_is_clear(PINE,PE0);
+	_delay_us(50);
 	uint8_t retreived_value = adc_adr[channel];
 	return retreived_value;
 	

@@ -10,19 +10,20 @@
 #define loop_until_bit_is_set( reg, bit ) while( !test_bit( reg, bit ) )
 #define loop_until_bit_is_clear( reg, bit ) while( test_bit( reg, bit ) )
 #include "joystick.h"
-#include "oled.h"
 #include "adc.h"
 #include <stdbool.h>
 struct Menu_position pos;
 struct Joystick read_joystick_position(uint8_t channel_one, uint8_t channel_two){
 	int x_pos = (adc_read(channel_two)-134)*0.8264462809917355;
 	int y_pos = (adc_read(channel_one)-133)*0.819672131147541;
+
 	if (y_pos < -100) {y_pos = -100;}
 	if (x_pos < -100) {x_pos = -100;}
 	struct Joystick global_joystick;
 	global_joystick.x_pos = x_pos;
 	global_joystick.y_pos = y_pos;
 	//printf("X: %i, Y: %i \n", x_pos,y_pos);
+
 	return global_joystick;
 }
 struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two){
@@ -34,11 +35,7 @@ struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two){
 	return global_slider;
 	//printf("Slider 1: %i, Slider 2: %i \n", slider1,slider2);
 }
-void initialize_menu(){
-	oled_print("Meny1 Meny2 Meny3 Meny4 Meny5");
-	oled_print_letter('#',0x01,0x00,0x08);
-	pos.current_page = 0x01;
-}
+
 void joystick_navigate_vertical(){
 	struct Joystick global_joystick = read_joystick_position(channel1,channel2);
 	int y_pos = global_joystick.y_pos;	

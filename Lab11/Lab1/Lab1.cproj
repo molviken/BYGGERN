@@ -109,49 +109,77 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="adc.c">
+    <Compile Include="..\..\delte filer\adc.c">
       <SubType>compile</SubType>
+      <Link>adc.c</Link>
     </Compile>
-    <Compile Include="adc.h">
+    <Compile Include="..\..\delte filer\adc.h">
       <SubType>compile</SubType>
+      <Link>adc.h</Link>
     </Compile>
-    <Compile Include="CAN_bus.c">
+    <Compile Include="..\..\delte filer\CAN_bus.c">
       <SubType>compile</SubType>
+      <Link>CAN_bus.c</Link>
     </Compile>
-    <Compile Include="CAN_bus.h">
+    <Compile Include="..\..\delte filer\CAN_bus.h">
       <SubType>compile</SubType>
+      <Link>CAN_bus.h</Link>
     </Compile>
-    <Compile Include="fonts.h">
+    <Compile Include="..\..\delte filer\fonts.h">
       <SubType>compile</SubType>
+      <Link>fonts.h</Link>
     </Compile>
-    <Compile Include="joystick.c">
+    <Compile Include="..\..\delte filer\joystick.c">
       <SubType>compile</SubType>
+      <Link>joystick.c</Link>
     </Compile>
-    <Compile Include="joystick.h">
+    <Compile Include="..\..\delte filer\joystick.h">
       <SubType>compile</SubType>
+      <Link>joystick.h</Link>
+    </Compile>
+    <Compile Include="..\..\delte filer\joystick_can.c">
+      <SubType>compile</SubType>
+      <Link>joystick_can.c</Link>
+    </Compile>
+    <Compile Include="..\..\delte filer\joystick_can.h">
+      <SubType>compile</SubType>
+      <Link>joystick_can.h</Link>
+    </Compile>
+    <Compile Include="..\..\delte filer\MCP2515.h">
+      <SubType>compile</SubType>
+      <Link>MCP2515.h</Link>
+    </Compile>
+    <Compile Include="..\..\delte filer\MCPkontroll.c">
+      <SubType>compile</SubType>
+      <Link>MCPkontroll.c</Link>
+    </Compile>
+    <Compile Include="..\..\delte filer\MCPkontroll.h">
+      <SubType>compile</SubType>
+      <Link>MCPkontroll.h</Link>
+    </Compile>
+    <Compile Include="..\..\delte filer\SPI.c">
+      <SubType>compile</SubType>
+      <Link>SPI.c</Link>
+    </Compile>
+    <Compile Include="..\..\delte filer\SPI.h">
+      <SubType>compile</SubType>
+      <Link>SPI.h</Link>
+    </Compile>
+    <Compile Include="..\..\delte filer\uart.c">
+      <SubType>compile</SubType>
+      <Link>uart.c</Link>
+    </Compile>
+    <Compile Include="..\..\delte filer\uart.h">
+      <SubType>compile</SubType>
+      <Link>uart.h</Link>
     </Compile>
     <Compile Include="Lab1.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCP2515.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCPkontroll.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCPkontroll.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="oled.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="oled.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="SPI.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="SPI.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="testMemory.c">
@@ -162,12 +190,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="tests.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="uart.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="uart.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

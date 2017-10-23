@@ -2,8 +2,6 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-..\..\delte filer\adc.c
-
 ..\..\delte filer\CAN_bus.c
 
 ..\..\delte filer\joystick.c
@@ -16,11 +14,5 @@
 
 ..\..\delte filer\uart.c
 
-Lab1.c
-
-oled.c
-
-testMemory.c
-
-tests.c
+main.c
 
