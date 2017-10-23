@@ -7,12 +7,18 @@
 #include "MCPkontroll.h"
 #include "MCP2515.h"
 
+#ifdef __Atmega2560__
+	#define DD_SS PB7
+#else
+	#define DD_SS PB4
+#endif
+
 void select_CAN(void){
-	clear_bit(PORTB, PB4);
+	clear_bit(PORTB, DD_SS);
 }
 
 void deselect_CAN(void){
-	set_bit(PORTB, PB4);
+	set_bit(PORTB, DD_SS);
 }
 
 void MCP_init(){
