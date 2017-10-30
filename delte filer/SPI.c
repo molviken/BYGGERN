@@ -4,6 +4,7 @@
  * Created: 02.10.2017 10:40:42
  *  Author: arefv
  */ 
+#define __Atmega2560__
 #ifdef __Atmega2560__
 	#define DD_MOSI PB2
 	#define DD_SCK PB1

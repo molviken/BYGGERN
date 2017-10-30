@@ -7,8 +7,8 @@
 struct Menu_position pos;
 int tall = 0;
 #include "oled.h"
-#include "../../delte filer/joystick.h"
-#include "../../delte filer/fonts.h"
+#include "joystick.h"
+#include "fonts.h"
 int coloumn_counter = 0;
 void write_c(uint8_t command){
 	volatile char *oled_c = (char *) 0x1000;

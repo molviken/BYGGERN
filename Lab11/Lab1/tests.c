@@ -20,14 +20,14 @@ void test_CAN_bus(void){
 	struct CAN_message first_message;
 	first_message.id = 3;
 	first_message.length = 1;
-	first_message.data[0] = 0xff;
+	first_message.data[0] = 0x80;
 	int status = CAN_transmit(first_message);
 
 	struct CAN_message copy_message;
 	copy_message = CAN_receive();
-	printf("first message id = %x, ", first_message.id);
+	//printf("first message id = %x, ", first_message.id);
 	printf("copy message id = %x \n", copy_message.id);
-	printf("first message data[0] = %x, ", first_message.data[0]);
+	//printf("first message data[0] = %x, ", first_message.data[0]);
 	printf("copy message data[0} = %x \n", copy_message.data[0]);	
 }
 

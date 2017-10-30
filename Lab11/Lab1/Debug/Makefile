@@ -37,17 +37,17 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../../../delte\ filer/adc.c \
-../../../delte\ filer/CAN_bus.c \
-../../../delte\ filer/joystick.c \
-../../../delte\ filer/joystick_can.c \
-../../../delte\ filer/MCPkontroll.c \
-../../../delte\ filer/SPI.c \
-../../../delte\ filer/uart.c \
+../adc.c \
+../CAN_bus.c \
+../joystick.c \
+../joystick_can.c \
 ../Lab1.c \
+../MCPkontroll.c \
 ../oled.c \
+../SPI.c \
 ../testMemory.c \
-../tests.c
+../tests.c \
+../uart.c
 
 
 PREPROCESSING_SRCS += 
@@ -61,52 +61,52 @@ adc.o \
 CAN_bus.o \
 joystick.o \
 joystick_can.o \
-MCPkontroll.o \
-SPI.o \
-uart.o \
 Lab1.o \
+MCPkontroll.o \
 oled.o \
+SPI.o \
 testMemory.o \
-tests.o
+tests.o \
+uart.o
 
 OBJS_AS_ARGS +=  \
 adc.o \
 CAN_bus.o \
 joystick.o \
 joystick_can.o \
-MCPkontroll.o \
-SPI.o \
-uart.o \
 Lab1.o \
+MCPkontroll.o \
 oled.o \
+SPI.o \
 testMemory.o \
-tests.o
+tests.o \
+uart.o
 
 C_DEPS +=  \
 adc.d \
 CAN_bus.d \
 joystick.d \
 joystick_can.d \
-MCPkontroll.d \
-SPI.d \
-uart.d \
 Lab1.d \
+MCPkontroll.d \
 oled.d \
+SPI.d \
 testMemory.d \
-tests.d
+tests.d \
+uart.d
 
 C_DEPS_AS_ARGS +=  \
 adc.d \
 CAN_bus.d \
 joystick.d \
 joystick_can.d \
-MCPkontroll.d \
-SPI.d \
-uart.d \
 Lab1.d \
+MCPkontroll.d \
 oled.d \
+SPI.d \
 testMemory.d \
-tests.d
+tests.d \
+uart.d
 
 OUTPUT_FILE_PATH +=Lab1.elf
 
@@ -122,54 +122,6 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-./adc.o: ../../../delte\ filer/adc.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-./CAN_bus.o: ../../../delte\ filer/CAN_bus.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-./joystick.o: ../../../delte\ filer/joystick.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-./joystick_can.o: ../../../delte\ filer/joystick_can.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-./MCPkontroll.o: ../../../delte\ filer/MCPkontroll.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-./SPI.o: ../../../delte\ filer/SPI.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-./uart.o: ../../../delte\ filer/uart.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
 
 
 
@@ -180,12 +132,18 @@ LINKER_SCRIPT_DEP+=
 
 
 
-./%.o: ../../../delte\ filer/%.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
+
+
+
+
+
+
+
+
+
+
+
+
 
 ./%.o: .././%.c
 	@echo Building file: $<

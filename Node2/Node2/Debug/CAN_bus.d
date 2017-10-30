@@ -1,5 +1,4 @@
-CAN_bus.d CAN_bus.o: ../../../delte\ filer/CAN_bus.c \
- ../../../delte\ filer/CAN_bus.h \
+CAN_bus.d CAN_bus.o: .././CAN_bus.c .././CAN_bus.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -21,10 +20,9 @@ CAN_bus.d CAN_bus.o: ../../../delte\ filer/CAN_bus.c \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h \
- ../../../delte\ filer/MCP2515.h ../../../delte\ filer/MCPkontroll.h \
- ../../../delte\ filer/uart.h
+ .././MCP2515.h .././MCPkontroll.h .././uart.h
 
-../../../delte\ filer/CAN_bus.h:
+.././CAN_bus.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -68,8 +66,8 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h:
 
-../../../delte\ filer/MCP2515.h:
+.././MCP2515.h:
 
-../../../delte\ filer/MCPkontroll.h:
+.././MCPkontroll.h:
 
-../../../delte\ filer/uart.h:
+.././uart.h:

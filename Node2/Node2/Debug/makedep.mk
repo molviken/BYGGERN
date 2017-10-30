@@ -2,17 +2,17 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-..\..\delte filer\CAN_bus.c
+CAN_bus.c
 
-..\..\delte filer\joystick.c
+joystick.c
 
-..\..\delte filer\joystick_can.c
-
-..\..\delte filer\MCPkontroll.c
-
-..\..\delte filer\SPI.c
-
-..\..\delte filer\uart.c
+joystick_can.c
 
 main.c
+
+MCPkontroll.c
+
+SPI.c
+
+uart.c
 

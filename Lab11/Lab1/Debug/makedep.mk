@@ -2,25 +2,25 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-..\..\delte filer\adc.c
+adc.c
 
-..\..\delte filer\CAN_bus.c
+CAN_bus.c
 
-..\..\delte filer\joystick.c
+joystick.c
 
-..\..\delte filer\joystick_can.c
-
-..\..\delte filer\MCPkontroll.c
-
-..\..\delte filer\SPI.c
-
-..\..\delte filer\uart.c
+joystick_can.c
 
 Lab1.c
 
+MCPkontroll.c
+
 oled.c
+
+SPI.c
 
 testMemory.c
 
 tests.c
+
+uart.c
 

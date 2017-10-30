@@ -6,7 +6,7 @@
  */ 
 #include "MCPkontroll.h"
 #include "MCP2515.h"
-
+#define __Atmega2560__
 #ifdef __Atmega2560__
 	#define DD_SS PB7
 #else

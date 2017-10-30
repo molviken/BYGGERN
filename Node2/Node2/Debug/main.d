@@ -1,5 +1,4 @@
-main.d main.o: .././main.c .././../../delte\ filer/uart.h \
- .././../../delte\ filer/SPI.h \
+main.d main.o: .././main.c .././uart.h .././SPI.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -19,19 +18,17 @@ main.d main.o: .././main.c .././../../delte\ filer/uart.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdio.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdarg.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdbool.h \
- .././../../delte\ filer/MCPkontroll.h .././../../delte\ filer/MCP2515.h \
- .././../../delte\ filer/uart.h .././../../delte\ filer/CAN_bus.h \
+ .././MCPkontroll.h .././MCP2515.h .././CAN_bus.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h \
- .././../../delte\ filer/adc.h .././../../delte\ filer/fonts.h \
+ .././adc.h .././fonts.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
- .././../../delte\ filer/joystick_can.h \
- .././../../delte\ filer/joystick.h .././../../delte\ filer/MCP2515.h
+ .././joystick_can.h .././joystick.h
 
-.././../../delte\ filer/uart.h:
+.././uart.h:
 
-.././../../delte\ filer/SPI.h:
+.././SPI.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -71,13 +68,11 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdbool.h:
 
-.././../../delte\ filer/MCPkontroll.h:
+.././MCPkontroll.h:
 
-.././../../delte\ filer/MCP2515.h:
+.././MCP2515.h:
 
-.././../../delte\ filer/uart.h:
-
-.././../../delte\ filer/CAN_bus.h:
+.././CAN_bus.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h:
 
@@ -85,14 +80,12 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h:
 
-.././../../delte\ filer/adc.h:
+.././adc.h:
 
-.././../../delte\ filer/fonts.h:
+.././fonts.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\pgmspace.h:
 
-.././../../delte\ filer/joystick_can.h:
+.././joystick_can.h:
 
-.././../../delte\ filer/joystick.h:
-
-.././../../delte\ filer/MCP2515.h:
+.././joystick.h:

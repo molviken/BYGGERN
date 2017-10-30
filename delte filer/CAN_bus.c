@@ -16,11 +16,11 @@ void CAN_init(){
 	MCP_bit_mod(MCP_RXB0CTRL, 0b01100100, 0xFF);
 	
 	// Set LoopBack mode on
-	MCP_bit_mod(MCP_CANCTRL, MODE_MASK, MODE_NORMAL); // MCP_CANCTRL = MODE_LOOPBACK;
+	MCP_bit_mod(MCP_CANCTRL, MODE_MASK, MODE_LOOPBACK); // MCP_CANCTRL = MODE_LOOPBACK;
 	
 	// Enable interrupt when a valid message has been received
 	MCP_bit_mod(MCP_CANINTE, MCP_RX0IF, 1);
-	if ((MCP_read(MCP_CANSTAT) & MODE_MASK) != MODE_NORMAL)
+	if ((MCP_read(MCP_CANSTAT) & MODE_MASK) != MODE_LOOPBACK)
 	{
 		printf("NOT in loopback mode!\n");
 	}
@@ -82,7 +82,8 @@ struct CAN_message CAN_receive(void){
 	MCP_read(MCP_RXB0SIDH) << 3;
 	if(MCP_RX0IF == 1){
 		// writing the 8 bits we want from IDH and IDL
-		new_message.id = (MCP_read(MCP_RXB0SIDL) >> 5 | MCP_read(MCP_RXB0SIDH) << 3);
+		new_message.id = MCP_read(MCP_RXB0SIDL) >> 5;
+		new_message.id |= MCP_read(MCP_RXB0SIDH) << 3;
 		// Get the length (only last 4 bits)
 		new_message.length = MCP_read(0x65);
 		
@@ -90,7 +91,7 @@ struct CAN_message CAN_receive(void){
 		for(uint8_t i = 0; i < new_message.length; i++){
 			new_message.data[i] = MCP_read(MCP_RXB0D0 + i);
 		}
-		rx_flag = 0;
+
 	}
 	else{
 		// message not received

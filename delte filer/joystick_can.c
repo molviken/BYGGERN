@@ -18,6 +18,7 @@ struct Joystick get_joy_pos(){
 void send_joy_pos(){
 	struct Joystick pos = get_joy_pos();
 	struct CAN_message new_message;
+	printf("Joy X = %x , Joy Y = %x \n", pos.x_pos,pos.y_pos);
 	new_message.id = 3;
 	new_message.length = 2;
 	new_message.data[0] = pos.x_pos;

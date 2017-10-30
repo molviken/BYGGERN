@@ -1,5 +1,4 @@
-MCPkontroll.d MCPkontroll.o: ../../../delte\ filer/MCPkontroll.c \
- ../../../delte\ filer/MCPkontroll.h \
+MCPkontroll.d MCPkontroll.o: .././MCPkontroll.c .././MCPkontroll.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -18,9 +17,9 @@ MCPkontroll.d MCPkontroll.o: ../../../delte\ filer/MCPkontroll.c \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdio.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdarg.h \
- ../../../delte\ filer/MCP2515.h ../../../delte\ filer/uart.h
+ .././MCP2515.h .././uart.h
 
-../../../delte\ filer/MCPkontroll.h:
+.././MCPkontroll.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -58,6 +57,6 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdarg.h:
 
-../../../delte\ filer/MCP2515.h:
+.././MCP2515.h:
 
-../../../delte\ filer/uart.h:
+.././uart.h:

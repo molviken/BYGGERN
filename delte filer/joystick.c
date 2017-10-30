@@ -4,6 +4,7 @@
  * Created: 25.09.2017 15:20:44
  *  Author: oystmol
  */ 
+#include <util/delay.h>
 #define set_bit( reg, bit ) (reg |= (1 << bit))
 #define clear_bit( reg, bit ) (reg &= ~(1 << bit))
 #define test_bit( reg, bit ) (reg & (1 << bit))
@@ -28,6 +29,7 @@ struct Joystick read_joystick_position(uint8_t channel_one, uint8_t channel_two)
 }
 struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two){
 	int slider1 = adc_read(channel_one)*0.392156862745098;
+	//_delay_ms(100);
 	int slider2 = adc_read(channel_two)*0.392156862745098;
 	struct Slider global_slider;
 	global_slider.slider1 = slider1;
