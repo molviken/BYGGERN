@@ -112,6 +112,18 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="adc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="adc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="adc_node2.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="adc_node2.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="CAN_bus.c">
       <SubType>compile</SubType>
     </Compile>
@@ -119,6 +131,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="fonts.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ir_detector.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ir_detector.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="joystick.c">
@@ -149,6 +167,18 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SPI.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="pwm.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="pwm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="uart.c">

@@ -136,7 +136,7 @@
     <Compile Include="joystick_can.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="Lab1.c">
+    <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCP2515.h">

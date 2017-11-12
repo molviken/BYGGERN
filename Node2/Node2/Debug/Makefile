@@ -37,12 +37,17 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../adc.c \
+../adc_node2.c \
 ../CAN_bus.c \
+../ir_detector.c \
 ../joystick.c \
 ../joystick_can.c \
 ../main.c \
 ../MCPkontroll.c \
 ../SPI.c \
+../pwm.c \
+../timer.c \
 ../uart.c
 
 
@@ -53,39 +58,59 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+adc.o \
+adc_node2.o \
 CAN_bus.o \
+ir_detector.o \
 joystick.o \
 joystick_can.o \
 main.o \
 MCPkontroll.o \
 SPI.o \
+pwm.o \
+timer.o \
 uart.o
 
 OBJS_AS_ARGS +=  \
+adc.o \
+adc_node2.o \
 CAN_bus.o \
+ir_detector.o \
 joystick.o \
 joystick_can.o \
 main.o \
 MCPkontroll.o \
 SPI.o \
+pwm.o \
+timer.o \
 uart.o
 
 C_DEPS +=  \
+adc.d \
+adc_node2.d \
 CAN_bus.d \
+ir_detector.d \
 joystick.d \
 joystick_can.d \
 main.d \
 MCPkontroll.d \
 SPI.d \
+pwm.d \
+timer.d \
 uart.d
 
 C_DEPS_AS_ARGS +=  \
+adc.d \
+adc_node2.d \
 CAN_bus.d \
+ir_detector.d \
 joystick.d \
 joystick_can.d \
 main.d \
 MCPkontroll.d \
 SPI.d \
+pwm.d \
+timer.d \
 uart.d
 
 OUTPUT_FILE_PATH +=Node2.elf
@@ -102,6 +127,16 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
+
+
+
+
 
 
 

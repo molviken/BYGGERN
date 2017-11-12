@@ -14,11 +14,12 @@
 #include "uart.h"
 #include <avr/io.h>
 #include <util/delay.h>
-void adc_init(void){
-	set_bit(MCUCR,SRE);
-	set_bit(SFIOR,XMM2);
-	clear_bit(DDRE,DDE0);
-}
+
+//void adc_init(void){
+	//set_bit(MCUCR,SRE);
+	//set_bit(SFIOR,XMM2);
+	//clear_bit(DDRE,DDE0);
+//}
 
 uint8_t adc_read(uint8_t channel){
 	

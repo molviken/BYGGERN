@@ -10,7 +10,7 @@ joystick.c
 
 joystick_can.c
 
-Lab1.c
+main.c
 
 MCPkontroll.c
 

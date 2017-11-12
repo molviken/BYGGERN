@@ -41,7 +41,7 @@ C_SRCS +=  \
 ../CAN_bus.c \
 ../joystick.c \
 ../joystick_can.c \
-../Lab1.c \
+../main.c \
 ../MCPkontroll.c \
 ../oled.c \
 ../SPI.c \
@@ -61,7 +61,7 @@ adc.o \
 CAN_bus.o \
 joystick.o \
 joystick_can.o \
-Lab1.o \
+main.o \
 MCPkontroll.o \
 oled.o \
 SPI.o \
@@ -74,7 +74,7 @@ adc.o \
 CAN_bus.o \
 joystick.o \
 joystick_can.o \
-Lab1.o \
+main.o \
 MCPkontroll.o \
 oled.o \
 SPI.o \
@@ -87,7 +87,7 @@ adc.d \
 CAN_bus.d \
 joystick.d \
 joystick_can.d \
-Lab1.d \
+main.d \
 MCPkontroll.d \
 oled.d \
 SPI.d \
@@ -100,7 +100,7 @@ adc.d \
 CAN_bus.d \
 joystick.d \
 joystick_can.d \
-Lab1.d \
+main.d \
 MCPkontroll.d \
 oled.d \
 SPI.d \
