@@ -30,9 +30,9 @@ struct Joystick read_joystick_position(uint8_t channel_one, uint8_t channel_two)
 	return global_joystick;
 }
 struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two){
-	int slider1 = adc_read(channel_one)*0.392156862745098;
+	int slider1 = adc_read(channel_one);
 	//_delay_ms(100);
-	int slider2 = adc_read(channel_two)*0.392156862745098;
+	int slider2 = adc_read(channel_two);
 	struct Slider global_slider;
 	global_slider.slider1 = slider1;
 	global_slider.slider2 = slider2;
@@ -98,4 +98,15 @@ uint8_t slider_button(){
 		printf("Current page is: %x \n ", pos.current_page);
 		return pos.current_page;
 	}
+}
+
+struct Slider get_slider_pos(){
+	struct Slider temp;
+	temp = read_slider_position(channel3,channel4);
+	return temp;
+}
+struct Joystick get_joy_pos(){
+	struct Joystick temp;
+	temp = read_joystick_position(channel1,channel2);
+	return temp;
 }

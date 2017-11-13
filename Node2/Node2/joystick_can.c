@@ -9,26 +9,17 @@
 #include "adc.h"
 #include "CAN_bus.h"
 
-struct Joystick get_joy_pos(){
-	struct Joystick temp;
-	temp = read_joystick_position(channel1,channel2);
-	return temp;
-}
-
-void send_joy_pos(){
-	struct Joystick pos = get_joy_pos();
-	struct CAN_message new_message;
-	printf("Joy X = %x , Joy Y = %x \n", pos.x_pos,pos.y_pos);
-	new_message.id = 3;
-	new_message.length = 2;
-	new_message.data[0] = pos.x_pos;
-	new_message.data[1] = pos.y_pos;
-}
-
 void received_joy_pos(){
 	struct CAN_message received_pos;
 	received_pos = CAN_receive();
 	uint8_t x_pos = received_pos.data[0];
 	uint8_t y_pos = received_pos.data[1];
 	//printf("X POS: %x, Y POS: %x \n", x_pos,y_pos);
+}
+void received_slider_pos(){
+	struct CAN_message received_pos;
+	received_pos = CAN_receive();
+	uint8_t slider_left = received_pos.data[0];
+	uint8_t slider_rigth = received_pos.data[1];
+	//printf("Sli left: %x, Sli right: %x \n", slider_left, slider_right);
 }

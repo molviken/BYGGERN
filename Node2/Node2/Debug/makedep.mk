@@ -8,6 +8,8 @@ adc_node2.c
 
 CAN_bus.c
 
+dac.c
+
 ir_detector.c
 
 joystick.c
@@ -18,11 +20,15 @@ main.c
 
 MCPkontroll.c
 
+motor.c
+
 SPI.c
 
 pwm.c
 
 timer.c
+
+TWI_Master.c
 
 uart.c
 

@@ -15,16 +15,7 @@
 #include <stdio.h>
 //#include <time.h>
 
-struct Slider{
-	int slider1;
-	int slider2;
-	};
-//extern struct Slider global_slider;
-struct Joystick{
-	int x_pos;
-	int y_pos;
-	};
-//extern struct Joystick global_joystick;
+
 void adc_init();
 uint8_t adc_read(uint8_t channel);
 struct Joystick read_joystick_position(uint8_t channel_one, uint8_t channel_two);

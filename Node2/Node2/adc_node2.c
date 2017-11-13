@@ -9,6 +9,7 @@
 #define set_bit( reg, bit ) (reg |= (1 << bit))
 #define clear_bit( reg, bit ) (reg &= ~(1 << bit))
 #include <avr/io.h>
+#include <util/delay.h>
 #include "adc_node2.h"
 int ADC_ready = 0;
 
@@ -26,7 +27,7 @@ void adc_node2_init(void) {
 	set_bit(ADCSRA, ADPS1);
 	set_bit(ADCSRA, ADPS0);
 	//Enable interrupt
-	set_bit(ADCSRA, ADIE);
+	//set_bit(ADCSRA, ADIE);
 
 	clear_bit(DDRF,PF0);
 
@@ -36,11 +37,10 @@ void adc_node2_init(void) {
 uint16_t ADC_node2_read(void) {
 	//Start the ADC
 	ADCSRA |= (1 << ADSC);
-	while (!ADC_ready){
-		ADC_ready = 0;
-		uint16_t data = ADCL | ADCH << 8;
-		return data;
-	}
+	_delay_us(50);
+	ADC_ready = 0;
+	uint16_t data = ADCL | ADCH << 8;
+	return data;
 	
 	
 }
@@ -50,6 +50,7 @@ uint16_t ADC_node2_read(void) {
 	//ADCSRA &= ~(1 << ADEN);
 //}
 
+/*
 ISR(ADC_vect){
 	ADC_ready = 1;
-}
+}*/

@@ -71,12 +71,6 @@ int CAN_completed_transmit(void){
 	}
 }
 
-void CAN_int_vect(void){
-	// clear interrupt flag in buffer 0
-	MCP_bit_mod(MCP_CANINTF, 0x01, 0);
-	rx_flag = 1;
-}
-
 struct CAN_message CAN_receive(void){
 	struct CAN_message new_message;
 	MCP_read(MCP_RXB0SIDL) >> 5;
@@ -105,12 +99,3 @@ struct CAN_message CAN_receive(void){
 	return new_message;
 }
 
-// Interrupt service
-ISR(INT0_vect){
-	_delay_ms(10);
-	CAN_int_vect();
-}
-
-SIGNAL(TIMER0_COMPA_vect){
-
-}

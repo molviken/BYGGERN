@@ -33,36 +33,26 @@ int main(void)
 	DDRB = 0b00000000;
 	CAN_init();
 	printf("Init er GOOD\n");
-	struct CAN_message test;
-	test.id = 3;
-	test.length = 2;
-	test.data[0] = 0x22;
-	test.data[1] = 0x69;
+	struct CAN_message usb_board;
+	usb_board.id = 3;
+	usb_board.length = 4;
 	
-	//struct CAN_message copy_message;
-	//test = joy_message_init();
+
 	while(1)
     {
-		struct Joystick temp = read_joystick_position(channel1,channel2);
-		//test.data[0] = 22;
-		//test.data[1] = 69;
-		test.data[0] = (uint8_t)read_joystick_position(channel1, channel2).x_pos;
-		test.data[1] = (uint8_t)read_joystick_position(channel1, channel2).y_pos;
-		int status = CAN_transmit(test);
+		//struct Joystick temp = read_joystick_position(channel1,channel2);
+
+		usb_board.data[0] = (uint8_t)read_joystick_position(channel1, channel2).x_pos;
+		usb_board.data[1] = (uint8_t)read_joystick_position(channel1, channel2).y_pos;
+		usb_board.data[2] = (uint8_t)read_slider_position(channel3,channel4).slider1;
+		usb_board.data[3] = (uint8_t)read_slider_position(channel3,channel4).slider2;
+		printf("x pos: %d		slider right: %d \n", usb_board.data[0],usb_board.data[3]);
+		int status = CAN_transmit(usb_board);
 		//printf("Status:  %i \n", status);
-		//send_joy_pos();
-		//copy_message = CAN_receive();
-		//printf("data 1: %x, data 2: %x   , ID: %x     , length: %x \n",copy_message.data[0], copy_message.data[1], copy_message.id, copy_message.length);	
-		
-		//printf("%x,   %x \n", test.data[0], test.data[1]);
-		//CAN_transmit(test);
+
 		//slider_button();
 		//joystick_pressed();
 		//joystick_navigate_vertical();
-		
-		//struct Slider temp2 = read_slider_position(channel3,channel4);
-		//printf("slider1: %i, slider2: %i \n",temp2.slider1,temp2.slider2);
-		printf("X pos: %i, Y pos: %i \n",temp.x_pos,temp.y_pos);
 		_delay_ms(100);
 	}
 }

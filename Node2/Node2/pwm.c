@@ -41,7 +41,7 @@ void pwm_setup(void){
 	ICR1 = 39999;
 	
 	// Tillater timer compare interrupt
-	set_bit(TIMSK1, OCIE1A); 
+	//set_bit(TIMSK1, OCIE1A); 
 	
 	//sei();
 }	

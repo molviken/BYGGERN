@@ -10,7 +10,8 @@ uint16_t ir_threshold(uint16_t filterTrigger){
 	uint16_t mean = 0;
 	for (int i = 0; i<filterTrigger; i++){
 		mean += ADC_node2_read();
-		_delay_ms(5);
+		//printf("målinger: %x \n", ADC_node2_read());
+		_delay_ms(10);
 	}
 	mean = mean/(filterTrigger*0x2);
 	printf("treshold %x \n", mean);
@@ -39,7 +40,7 @@ struct Score ir_score_update(uint16_t threshold, struct Score poeng){
 	if(ir_detection(0xa, threshold) && poeng.flag == 1){
 		poeng.flag = 0;
 		poeng.score +=1;
-		_delay_ms(1000);
+		_delay_ms(5000);
 
 	}
 	else if (!ir_detection(0xa, threshold) && poeng.flag == 0){
