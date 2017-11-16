@@ -22,6 +22,8 @@ MCPkontroll.c
 
 motor.c
 
+sonoid.c
+
 SPI.c
 
 pwm.c

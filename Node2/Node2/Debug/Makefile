@@ -47,6 +47,7 @@ C_SRCS +=  \
 ../main.c \
 ../MCPkontroll.c \
 ../motor.c \
+../sonoid.c \
 ../SPI.c \
 ../pwm.c \
 ../timer.c \
@@ -71,6 +72,7 @@ joystick_can.o \
 main.o \
 MCPkontroll.o \
 motor.o \
+sonoid.o \
 SPI.o \
 pwm.o \
 timer.o \
@@ -88,6 +90,7 @@ joystick_can.o \
 main.o \
 MCPkontroll.o \
 motor.o \
+sonoid.o \
 SPI.o \
 pwm.o \
 timer.o \
@@ -105,6 +108,7 @@ joystick_can.d \
 main.d \
 MCPkontroll.d \
 motor.d \
+sonoid.d \
 SPI.d \
 pwm.d \
 timer.d \
@@ -122,6 +126,7 @@ joystick_can.d \
 main.d \
 MCPkontroll.d \
 motor.d \
+sonoid.d \
 SPI.d \
 pwm.d \
 timer.d \
@@ -142,6 +147,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

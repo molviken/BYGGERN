@@ -22,7 +22,7 @@
 #include "dac.h"
 #include "motor.h"
 #include <util/delay.h>
-
+#include "sonoid.h"
 int main(void)
 {
 
@@ -66,15 +66,16 @@ int main(void)
 		copy_message = CAN_receive();
 		if (copy_message.id != 0xff){
 			PWM_control(copy_message.data[0]);
+			//printf("sonoid: %d \n", copy_message.data[4]);
 			motor_position_control(copy_message.data[3],reg);
 		}
 		//printf("Motor enc: %d \n", motor_read());
 
 		tempScore = game.score;
-		
+		sonoid_fire(copy_message.data[4]);
 		game = ir_score_update(threshold, game);
 		if(tempScore != game.score){
-			printf("Dine poeng: %i \n", game.score);
+			//printf("Dine poeng: %i \n", game.score);
 		}
 		//printf("Running..\n");
 		_delay_ms(100);

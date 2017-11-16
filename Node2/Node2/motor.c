@@ -14,7 +14,7 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <util/delay.h>
-
+#define dt 0.1
 static int16_t encoder_maxvalue;
 static int16_t reference_value = 0;
 
@@ -124,7 +124,7 @@ struct PI_reg motor_reg_calc(uint8_t slider_right){
 	reg.r = (uint16_t)slider_right*0x0021;
 	reg.y = motor_read();
 	reg.e = reg.r-reg.y;
-	reg.u = reg.Kp*reg.e;
+	reg.u = reg.Kp*reg.e + reg.e*dt;
 	//printf("r: %d		y: %d	e: %d		u: %d		kp: %d \n",reg.r,reg.y,reg.e,reg.u, reg.Kp);
 	return reg;	
 }
@@ -136,7 +136,7 @@ int8_t motor_speed_control(int8_t speed){
 void motor_position_control(uint8_t slider_right, struct PI_reg reg){
 
 	reg = motor_reg_calc(slider_right);
-
+	
 	int8_t speed = (int8_t)(reg.u*(0x1.33p-2));
 	speed = motor_speed_control(speed);
 	printf("y: %d	  r: %d	   speed: %d	u: %d	e: %d	 kp: %d \n", reg.y, reg.r,speed, reg.u, reg.e, reg.Kp);
@@ -153,4 +153,8 @@ void motor_position_control(uint8_t slider_right, struct PI_reg reg){
 		Go_Right;
 		dac_write(speed);
 	}
+}
+
+ISR(TIMER3_OVF_vect){
+	
 }

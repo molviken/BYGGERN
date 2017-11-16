@@ -36,3 +36,4 @@ uint8_t joystick_pressed();
 uint8_t slider_button();
 struct Joystick get_joy_pos();
 struct Slider get_slider_pos();
+int sonoid_button();

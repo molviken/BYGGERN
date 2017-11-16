@@ -110,3 +110,12 @@ struct Joystick get_joy_pos(){
 	temp = read_joystick_position(channel1,channel2);
 	return temp;
 }
+
+int sonoid_button(){
+	if (!test_bit(PINB,PB2)){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}

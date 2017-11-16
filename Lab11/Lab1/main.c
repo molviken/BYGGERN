@@ -35,7 +35,7 @@ int main(void)
 	printf("Init er GOOD\n");
 	struct CAN_message usb_board;
 	usb_board.id = 3;
-	usb_board.length = 4;
+	usb_board.length = 5;
 	
 
 	while(1)
@@ -46,7 +46,8 @@ int main(void)
 		usb_board.data[1] = (uint8_t)read_joystick_position(channel1, channel2).y_pos;
 		usb_board.data[2] = (uint8_t)read_slider_position(channel3,channel4).slider1;
 		usb_board.data[3] = (uint8_t)read_slider_position(channel3,channel4).slider2;
-		printf("x pos: %d		slider right: %d \n", usb_board.data[0],usb_board.data[3]);
+		usb_board.data[4] = (int)sonoid_button();
+		printf("x pos: %d		slider right: %d		Sonoid: %i \n", usb_board.data[0],usb_board.data[3], usb_board.data[4] );
 		int status = CAN_transmit(usb_board);
 		//printf("Status:  %i \n", status);
 
