@@ -10,6 +10,7 @@
 #include "motor.h"
 #include "TWI_Master.h"
 #include "dac.h"
+#include "pid.h"
 #include <stdlib.h>
 #include <avr/interrupt.h>
 #include <avr/io.h>
@@ -42,7 +43,9 @@ void motor_change_dir(int direction){
 		clear_bit(PORTH, DIR);
 	}
 	else{
-		dac_write(0x00);
+	
+		//dac_write(0x00);
+		printf("etter dac write\n");
 	}
 }
 
@@ -74,19 +77,8 @@ void encoder_reset(){
 
 }
 
-//void motor_set_ref(uint8_t value){
-	//reference_value = value;
-//}
-//int get_maxvalue(){
-	//return encoder_maxvalue;
-//}
-//
-//void control_set_joystick_flag(int flag){
-	//joystick_flag = flag;
-//}
-
 void test_program(){
-
+	printf("Inni test");
 	if(motor_read()>8000){
 
 		Go_Left;
@@ -105,56 +97,43 @@ void motor_cal(){
 	Go_Left;
 	dac_write(0x55);
 	_delay_ms(2000);
-	motor_change_dir(-1);
+	
 	encoder_reset();
+	
+	//Go_Right;
+	//_delay_ms(1000);	
+	//encoder_maxvalue = motor_read();
+	//printf("Encoder max value: %x", motor_read());
 }
 
-struct PI_reg motor_reg_init(){
-	struct PI_reg regulator;
-	regulator.Kp = -0x1p-1;
-	regulator.Ki = 1;
-	regulator.T = 1;
-	return regulator;
-}
+//struct PI_reg motor_reg_init(){
+	//struct PI_reg regulator;
+	//regulator.Kp = -0x1p-1;
+	//regulator.Ki = 1;
+	//regulator.T = 1;
+	//return regulator;
+//}
 
-struct PI_reg motor_reg_calc(uint8_t slider_right){
-	// Regulator parameters
-	struct PI_reg reg;
-	reg.Kp = 1;
-	reg.r = (uint16_t)slider_right*0x0021;
-	reg.y = motor_read();
-	reg.e = reg.r-reg.y;
-	reg.u = reg.Kp*reg.e + reg.e*dt;
-	//printf("r: %d		y: %d	e: %d		u: %d		kp: %d \n",reg.r,reg.y,reg.e,reg.u, reg.Kp);
-	return reg;	
-}
-int8_t motor_speed_control(int8_t speed){
+//struct PI_reg motor_reg_calc(uint8_t slider_right){
+	//// Regulator parameters
+	//struct PI_reg reg;
+	//reg.Kp = 1;
+	//reg.r = (uint16_t)slider_right*0x0021;
+	//reg.y = motor_read();
+	//reg.e = reg.r-reg.y;
+	//reg.u = reg.Kp*reg.e + reg.e*dt;
+	////printf("r: %d		y: %d	e: %d		u: %d		kp: %d \n",reg.r,reg.y,reg.e,reg.u, reg.Kp);
+	//return reg;	
+//}
+int8_t motor_speed_control(int8_t u){
+	int8_t speed = (int8_t)(u);
 	if (speed > 0xff){speed = 0xff;}
-	else if (speed < 0x00){speed = -speed; Go_Left;}
+	else if (speed < 0x00){speed = -speed;}
 	return speed;
 }
 void motor_position_control(uint8_t slider_right, struct PI_reg reg){
 
-	reg = motor_reg_calc(slider_right);
-	
-	int8_t speed = (int8_t)(reg.u*(0x1.33p-2));
+	int8_t speed;	
 	speed = motor_speed_control(speed);
-	printf("y: %d	  r: %d	   speed: %d	u: %d	e: %d	 kp: %d \n", reg.y, reg.r,speed, reg.u, reg.e, reg.Kp);
-	if (abs(reg.u) < 30){
-		motor_change_dir(-1);
-	}
-	else if(reg.y > reg.r){
-		printf("Going left\n");
-		Go_Left;
-		dac_write(speed);
-	}
-	else{
-		printf("Going right \n");
-		Go_Right;
-		dac_write(speed);
-	}
-}
-
-ISR(TIMER3_OVF_vect){
-	
+	//printf("y: %d	  r: %d	   speed: %d	u: %d	e: %d	 kp: %d \n", reg.y, reg.r,speed, reg.u, reg.e, reg.Kp);
 }

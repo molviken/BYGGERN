@@ -20,7 +20,8 @@ void dac_write(uint8_t value)
 	i2c_write[1] = 0x00;
 	i2c_write[2] = (uint8_t) value;
 	_delay_us(50);
-
+	
 	TWI_Start_Transceiver_With_Data(i2c_write, msgSize);
+	//printf("slutten av dac_write\n");
 }
 

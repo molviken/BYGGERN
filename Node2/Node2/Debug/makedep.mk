@@ -22,6 +22,8 @@ MCPkontroll.c
 
 motor.c
 
+pid.c
+
 sonoid.c
 
 SPI.c

@@ -5,6 +5,11 @@
  *  Author: oystmol
  */ 
 
+struct Sonoid {
+	int can_shoot;
+	int fire;
+	};
+
 #include <avr/io.h>
 #include <util/delay.h>
-void sonoid_fire(int fire);
+struct Sonoid sonoid_fire(struct Sonoid shooter);

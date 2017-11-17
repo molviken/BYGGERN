@@ -20,9 +20,7 @@
 #define MOTOR_ENABLE PA4
 #define MOTOR_DIR PA3
 #include <avr/io.h>
-struct PI_reg{
-	int16_t Kp, T, Ki, r, y, e, u;
-	};
+
 void motor_init();
 int16_t motor_read();
 void encoder_reset();
