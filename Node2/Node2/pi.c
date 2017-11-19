@@ -7,13 +7,13 @@
 #define Kp 1
 #define Ki 0.1 
 #define T 0.01
-#include "pid.h"
+#include "pi.h"
 #include "motor.h"
 #include "CAN_bus.h"
 struct PI_reg reg;
 int8_t speed;
 
-void timer_setup(){
+void PItimer_setup(){
 	// setting up timer 3
 	set_bit(TCCR3B, CS31);	//Prescalar 8
 	set_bit(TCCR3B, WGM32); //Set CTC mode, TOP at OCR3A
@@ -45,14 +45,16 @@ void pid_init(){
 	//_delay_ms(200);
 }
 
-uint8_t PI_regulator(){
-	reg.y = motor_read()/(0x21);
-	reg.r = CAN_receive().data[3];
+void PI_regulator(uint8_t position){
+	reg.y = motor_read()/(0x21); 
+	reg.r = position; //Slider position
 	reg.e = reg.r-reg.y;
 	
 	if (reg.e<0){reg.e = -reg.e;}
+	
 	static uint8_t integral;
 	integral  = integral + reg.e;
+	
 	reg.u = Kp*reg.e+T*Ki*integral;
 	
 	if(reg.u > 0){
@@ -60,17 +62,17 @@ uint8_t PI_regulator(){
 		if (speed < 0x00)
 		{speed = -speed;}
 		}
-	printf("y: %d	  r: %d	   speed: %d	u: %d	e: %d \n", reg.y, reg.r,speed, reg.u, reg.e);
-	if ( reg.e < 0x0a){
+	//printf("y: %d	  r: %d	   speed: %d	u: %d	e: %d \n", reg.y, reg.r,speed, reg.u, reg.e);
+	if ( reg.e < 0x06){
 		dac_write(0x00);
 	}
 	else if(reg.y > reg.r){
-		printf("Going left\n");
+		//printf("Going left\n");
 		Go_Left;
 		dac_write(speed);
 	}
 	else{
-		printf("Going right \n");
+		//printf("Going right \n");
 		Go_Right;
 		dac_write(speed);
 	}

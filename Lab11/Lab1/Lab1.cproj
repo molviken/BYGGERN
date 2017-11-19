@@ -148,6 +148,12 @@
     <Compile Include="MCPkontroll.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="menu_system.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="menu_system.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="oled.c">
       <SubType>compile</SubType>
     </Compile>

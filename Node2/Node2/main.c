@@ -23,7 +23,7 @@
 #include "motor.h"
 #include <util/delay.h>
 #include "sonoid.h"
-#include "pid.h"
+#include "pi.h"
 int main(void)
 {
 
@@ -35,12 +35,10 @@ int main(void)
 	motor_init();
 	TWI_Master_Initialise();
 	motor_cal();
-	
-
-	//pid_init();
-	timer_setup();
-			printf("Init er good... \n");
-	sei();
+	PItimer_setup();
+	CAN_timer_setup();
+	printf("Init er good... \n");
+	sei();//Enable Global interrupts
 
 	uint16_t threshold = ir_threshold(0xa);
 	int tempScore = 0;
@@ -48,37 +46,43 @@ int main(void)
 	game.score = 0;
 	game.flag = 1;
 	struct CAN_message copy_message;
-	struct Sonoid shooter;
+	struct Sonoid shooter;	
 	
-
+	struct CAN_message test_copy;
 	while(1) {
-		//printf("kp: %d \n", reg.Kp);
+		
+		if(TIFR5 & (1 << OCF5B)){ // if counter has reached OCR5B
+			copy_message = CAN_receive();
+			// Clear interrupt and reset counter
+			TCNT5 = 0;
+			TIFR5 |= (1 << OCF5B);
+		}
+		//
 		//test_program();
-		//PI_regulator();
-		copy_message = CAN_receive();
 		shooter.fire = copy_message.data[4];
 		if (copy_message.id != 0xff){
+			//printf("Fire: %i \n",shooter.fire);
 			PWM_control(copy_message.data[0]);
-			//printf("sonoid: %d \n", copy_message.data[4]);
-			//motor_position_control(copy_message.data[3],reg);
 			shooter = sonoid_fire(shooter);
 		}
 		
 		// Checking if the counter has counted the integral period
 		if(TIFR3 & (1 << OCF3B)){ // if counter has reached OCR3B
-			
-			//PI_regulator();
+			PI_regulator(copy_message.data[3]);
 			// Clear interrupt and reset counter
 			TCNT3 = 0;
 			TIFR3 |= (1 << OCF3B);
 		}
-		
+		_delay_ms(100);
+		//int16_t y = motor_read()/(0x21);
+		//uint8_t r = copy_message.data[3];
+		//uint8_t x = copy_message.data[0];
+		//
+		//printf("	y: %d,	r: %d,	x: %d \n", y, r, x); 
 		//tempScore = game.score;
 		//game = ir_score_update(threshold, game);
 		//if(tempScore != game.score){
 			//printf("Dine poeng: %i \n", game.score);
 		//printf("Running..\n");
-		_delay_ms(100);
-		
 	}
 }

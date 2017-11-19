@@ -23,7 +23,7 @@ void CAN_init(){
 	MCP_bit_mod(MCP_CANINTE, MCP_TX0IF, 1);
 	if ((MCP_read(MCP_CANSTAT) & MODE_MASK) != MODE_NORMAL)
 	{
-		printf("NOT in NORMAL mode!\n");
+		//printf("NOT in NORMAL mode!\n");
 	}
 	
 	char temp = MCP_read(MCP_CANCTRL);
@@ -46,7 +46,7 @@ int CAN_transmit(struct CAN_message message){
 	_delay_ms(1);
 	
 	if(!CAN_completed_transmit()){
-		//printf("Transmit not completed, bit = %i \n",test_bit(MCP_TXB0CTRL,3 ) );
+		//printf("Transmit not completed, bit = %i \n",test_bit(MCP_TXB0CTRL,3));
 		return CAN_check_error();
 	}
 	return 0;
@@ -100,12 +100,10 @@ struct CAN_message CAN_receive(void){
 		// message not received
 		new_message.id = -1;
 	}
-	_delay_ms(370);
 	return new_message;
 }
 
 // Interrupt service
-ISR(INT0_vect){
-	_delay_ms(10);
-	CAN_int_vect();
-}
+//ISR(INT0_vect){
+	//CAN_int_vect();
+//}

@@ -22,7 +22,7 @@ MCPkontroll.c
 
 motor.c
 
-pid.c
+pi.c
 
 sonoid.c
 

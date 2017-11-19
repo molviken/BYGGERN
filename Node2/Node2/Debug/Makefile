@@ -47,7 +47,7 @@ C_SRCS +=  \
 ../main.c \
 ../MCPkontroll.c \
 ../motor.c \
-../pid.c \
+../pi.c \
 ../sonoid.c \
 ../SPI.c \
 ../pwm.c \
@@ -73,7 +73,7 @@ joystick_can.o \
 main.o \
 MCPkontroll.o \
 motor.o \
-pid.o \
+pi.o \
 sonoid.o \
 SPI.o \
 pwm.o \
@@ -92,7 +92,7 @@ joystick_can.o \
 main.o \
 MCPkontroll.o \
 motor.o \
-pid.o \
+pi.o \
 sonoid.o \
 SPI.o \
 pwm.o \
@@ -111,7 +111,7 @@ joystick_can.d \
 main.d \
 MCPkontroll.d \
 motor.d \
-pid.d \
+pi.d \
 sonoid.d \
 SPI.d \
 pwm.d \
@@ -130,7 +130,7 @@ joystick_can.d \
 main.d \
 MCPkontroll.d \
 motor.d \
-pid.d \
+pi.d \
 sonoid.d \
 SPI.d \
 pwm.d \

@@ -19,7 +19,6 @@ void send_joy_pos(struct CAN_message joy_pos){
 void send_slider_pos(){
 	struct Slider pos = get_slider_pos();
 	struct CAN_message new_message;
-	printf("Sli left = %x , Sli right = %x \n", pos.slider1, pos.slider2);
 	new_message.id = 4;
 	new_message.length = 2;
 	new_message.data[0] = pos.slider1;

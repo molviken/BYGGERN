@@ -175,10 +175,10 @@
     <Compile Include="motor.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="pid.c">
+    <Compile Include="pi.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="pid.h">
+    <Compile Include="pi.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="sonoid.c">

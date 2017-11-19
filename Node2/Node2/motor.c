@@ -10,7 +10,7 @@
 #include "motor.h"
 #include "TWI_Master.h"
 #include "dac.h"
-#include "pid.h"
+#include "pi.h"
 #include <stdlib.h>
 #include <avr/interrupt.h>
 #include <avr/io.h>

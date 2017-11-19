@@ -43,6 +43,7 @@ C_SRCS +=  \
 ../joystick_can.c \
 ../main.c \
 ../MCPkontroll.c \
+../menu_system.c \
 ../oled.c \
 ../SPI.c \
 ../testMemory.c \
@@ -63,6 +64,7 @@ joystick.o \
 joystick_can.o \
 main.o \
 MCPkontroll.o \
+menu_system.o \
 oled.o \
 SPI.o \
 testMemory.o \
@@ -76,6 +78,7 @@ joystick.o \
 joystick_can.o \
 main.o \
 MCPkontroll.o \
+menu_system.o \
 oled.o \
 SPI.o \
 testMemory.o \
@@ -89,6 +92,7 @@ joystick.d \
 joystick_can.d \
 main.d \
 MCPkontroll.d \
+menu_system.d \
 oled.d \
 SPI.d \
 testMemory.d \
@@ -102,6 +106,7 @@ joystick.d \
 joystick_can.d \
 main.d \
 MCPkontroll.d \
+menu_system.d \
 oled.d \
 SPI.d \
 testMemory.d \
@@ -122,6 +127,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

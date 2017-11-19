@@ -4,12 +4,16 @@
  * Created: 25.09.2017 08:26:04
  *  Author: oystmol
  */ 
-struct Menu_position pos;
-int tall = 0;
+#include <stdbool.h>
 #include "oled.h"
 #include "joystick.h"
 #include "fonts.h"
+#include "menu_system.h"
+
+struct Menu_position pos;
+
 int coloumn_counter = 0;
+int tall = 0;
 void write_c(uint8_t command){
 	volatile char *oled_c = (char *) 0x1000;
 	oled_c[0] = command;
@@ -53,10 +57,7 @@ void oled_goto_page(uint8_t page){
 	uint8_t goto2 = 0xb0+page;
 	write_c(goto2);
 }
-
-
-//
-unsigned int oled_goto_coloumn(uint8_t coloumn_start, uint8_t coloumn_end){
+void oled_goto_coloumn(uint8_t coloumn_start, uint8_t coloumn_end){
 	write_c(0x21);
 	write_c(coloumn_start);
 	write_c(coloumn_end);
@@ -82,20 +83,25 @@ void oled_pos(uint8_t page,uint8_t coloumn_start,uint8_t coloumn_end){
 	oled_goto_page(page);
 	oled_goto_coloumn(coloumn_start,coloumn_end);
 }
+
+
 void oled_print(char* word ){
+	
 	uint8_t coloumn_start = 0x09;
 	uint8_t coloumn_end = 0x11;
-	uint8_t page = 0x01;	
+	uint8_t page = 0x02;	
 	for (int i = 0; word[i] != '\0'; i++){
-		oled_print_letter(word[i], page, coloumn_start,coloumn_end);
-		coloumn_start += 0x09;
-		coloumn_end += 0x09;
-		//printf("Bokstaven er: %c , coloumn_start: %u , coloumn_end: %u \n",word[i], coloumn_start, coloumn_end);
-		if(word[i] == 32){
+		if(word[i] == 44){
 			page +=0x01;
 			coloumn_start = 0x09;
 			coloumn_end = 0x11;
-		}
+			i++;
+		}			
+		oled_print_letter(word[i], page, coloumn_start,coloumn_end);
+		coloumn_start += 0x09;
+		coloumn_end += 0x09;
+
+
 	}
 	
 }
@@ -103,10 +109,4 @@ void oled_print(char* word ){
 void oled_home(void){
 	oled_goto_page(0x00);
 	oled_goto_coloumn(0x00,0x00);
-}
-
-void initialize_menu(){
-	oled_print("Meny1 Meny2 Meny3 Meny4 Meny5");
-	oled_print_letter('#',0x01,0x00,0x08);
-	pos.current_page = 0x01;
 }

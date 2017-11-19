@@ -39,42 +39,12 @@ struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two){
 	return global_slider;
 	//printf("Slider 1: %i, Slider 2: %i \n", slider1,slider2);
 }
-
-void joystick_navigate_vertical(){
-	struct Joystick global_joystick = read_joystick_position(channel1,channel2);
-	int y_pos = global_joystick.y_pos;	
-	if(y_pos < 90 && y_pos > -90){
-		pos.move = true;
-	}
-	else if(y_pos < -90 && pos.move){
-		pos.move = false;
-		pos.prev_page = pos.current_page;
-		pos.current_page += 0x01;
-		if(pos.current_page > 0x05){
-			pos.current_page = 0x01;
-		}
-		oled_print_letter(' ',pos.prev_page,0x00,0x08);
-		oled_print_letter('#',pos.current_page,0x00,0x08);
-	}
-	else if(y_pos > 90 && pos.move){
-		
-		pos.move = false;
-		pos.prev_page = pos.current_page;
-		pos.current_page -= 0x01;
-		if(pos.current_page < 0x01){
-			pos.current_page = 0x05;
-		}
-		oled_print_letter(' ',pos.prev_page,0x00,0x08);
-		oled_print_letter('#',pos.current_page,0x00,0x08);
-	}
-}
-
 uint8_t joystick_pressed(){
 	if (!test_bit(PINB,PB2)){
 		pos.pressed1 = true;
 	}
 	if (test_bit(PINB,PB2) && pos.pressed1){
-		printf("Joystick\n");
+		//printf("Joystick\n");
 		pos.pressed1 = false;
 		return pos.current_page;
 	}
@@ -89,13 +59,13 @@ uint8_t slider_button(){
 	if (test_bit(PINB,PB1) && pos.pressed2){
 		//printf("Slider 2\n");
 		pos.pressed2 = false;
-		printf("Current page is: %x \n ", pos.current_page);
+		//printf("Current page is: %x \n ", pos.current_page);
 		return pos.current_page;
 	}
 	if (test_bit(PINB,PB0) && pos.pressed1){
 		//printf("Slider 1\n");
 		pos.pressed1 = false;
-		printf("Current page is: %x \n ", pos.current_page);
+		//printf("Current page is: %x \n ", pos.current_page);
 		return pos.current_page;
 	}
 }

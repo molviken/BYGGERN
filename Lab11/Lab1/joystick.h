@@ -20,7 +20,7 @@ struct Menu_position {
 	bool move;
 	bool pressed1;
 	bool pressed2;
-	};
+};
 struct Slider{
 	int slider1;
 	int slider2;
@@ -31,7 +31,6 @@ struct Joystick{
 };
 struct Joystick read_joystick_position(uint8_t channel_one, uint8_t channel_two);
 struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two);
-void joystick_navigate_vertical();
 uint8_t joystick_pressed();
 uint8_t slider_button();
 struct Joystick get_joy_pos();

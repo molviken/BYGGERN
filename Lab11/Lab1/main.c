@@ -17,43 +17,46 @@
 #include "MCPkontroll.h"
 #include "CAN_bus.h"
 #include "MCP2515.h"
-
+#include "menu_system.h"
 
 volatile char* oled_adresse = 0x1200;
 volatile char* adc_adresse = 0x1400;
 volatile char* ram_adresse = 0x1800;
 int main(void)
 {
+	
+	DDRB = 0b00000000;
+
 	EXT_MEM_Init();
-	USART_Init(31);
+	USART_Init(31);				
 	oled_init();
 	oled_reset();
 	adc_init();
-	initialize_menu();
-	DDRB = 0b00000000;
 	CAN_init();
-	printf("Init er GOOD\n");
+	menu_system();
+	menu_initialize();
+	printf("Init er good\n");
+	//SRAM_test();
+	//printf("Init er GOOD\n");
 	struct CAN_message usb_board;
 	usb_board.id = 3;
 	usb_board.length = 5;
-	
-
 	while(1)
     {
-		//struct Joystick temp = read_joystick_position(channel1,channel2);
-
-		usb_board.data[0] = (uint8_t)read_joystick_position(channel1, channel2).x_pos;
-		usb_board.data[1] = (uint8_t)read_joystick_position(channel1, channel2).y_pos;
-		usb_board.data[2] = (uint8_t)read_slider_position(channel3,channel4).slider1;
-		usb_board.data[3] = (uint8_t)read_slider_position(channel3,channel4).slider2;
-		usb_board.data[4] = (int)sonoid_button();
-		printf("x pos: %d		slider right: %d		Sonoid: %i \n", usb_board.data[0],usb_board.data[3], usb_board.data[4] );
-		int status = CAN_transmit(usb_board);
+		menu_navigate();
+		//usb_board.data[0] = (uint8_t)read_joystick_position(channel1, channel2).x_pos;
+		//usb_board.data[1] = (uint8_t)read_joystick_position(channel1, channel2).y_pos;
+		//usb_board.data[2] = (uint8_t)read_slider_position(channel3,channel4).slider1;
+		//usb_board.data[3] = (uint8_t)read_slider_position(channel3,channel4).slider2;
+		//usb_board.data[4] = (int)sonoid_button();
+		//printf("x pos: %d		slider right: %d		Sonoid: %i \n", usb_board.data[0],usb_board.data[3], usb_board.data[4]);
+		//
+		//int status = CAN_transmit(usb_board);
+	
 		//printf("Status:  %i \n", status);
 
 		//slider_button();
 		//joystick_pressed();
 		//joystick_navigate_vertical();
-		_delay_ms(100);
 	}
 }

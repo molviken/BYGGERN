@@ -26,7 +26,7 @@ main.d main.o: .././main.c \
  .././adc.h .././fonts.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
  .././joystick_can.h .././joystick.h .././adc_node2.h .././ir_detector.h \
- .././dac.h .././motor.h .././sonoid.h .././pid.h
+ .././dac.h .././motor.h .././sonoid.h .././pi.h
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
@@ -102,4 +102,4 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 .././sonoid.h:
 
-.././pid.h:
+.././pi.h:

@@ -14,6 +14,8 @@ main.c
 
 MCPkontroll.c
 
+menu_system.c
+
 oled.c
 
 SPI.c

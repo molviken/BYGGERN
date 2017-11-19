@@ -9,7 +9,13 @@
 #include "MCPkontroll.h"
 
 uint8_t rx_flag = 0;
-
+void CAN_timer_setup(){
+	// setting up timer 3
+	set_bit(TCCR5B, CS51);	//Prescalar 8
+	set_bit(TCCR5B, WGM52); //Set CTC mode, TOP at OCR5A
+	
+	OCR3B = 10000;
+}
 void CAN_init(){
 	MCP_init();
 	// Turn mask/filters off
@@ -23,7 +29,7 @@ void CAN_init(){
 	MCP_bit_mod(MCP_CANINTE, MCP_TX0IF, 1);
 	if ((MCP_read(MCP_CANSTAT) & MODE_MASK) != MODE_NORMAL)
 	{
-		printf("NOT in loopback mode!\n");
+		printf("NOT in normal mode!\n");
 	}
 	
 	char temp = MCP_read(MCP_CANCTRL);
@@ -32,7 +38,7 @@ void CAN_init(){
 
 int CAN_transmit(struct CAN_message message){
 	if (CAN_completed_transmit()){
-		
+		//printf("Transmit is good \n");
 		// Setting the standard identifier
 		MCP_write(message.id >> 3, MCP_TXB0SIDH);
 		MCP_write(message.id << 5, MCP_TXB0SIDL);
@@ -47,6 +53,7 @@ int CAN_transmit(struct CAN_message message){
 		MCP_rts(1);
 	}
 	else{
+		printf("Did not transmit\n");
 		if(CAN_check_error()<0){return -1;}
 	}
 	return 0;
@@ -75,9 +82,7 @@ struct CAN_message CAN_receive(void){
 	struct CAN_message new_message;
 	MCP_read(MCP_RXB0SIDL) >> 5;
 	MCP_read(MCP_RXB0SIDH) << 3;
-
-	if(MCP_read(MCP_CANINTF) & MCP_RX0IF){
-	
+	if(MCP_read(MCP_CANINTF) && MCP_RX0IF){
 		// writing the 8 bits we want from IDH and IDL
 		new_message.id = MCP_read(MCP_RXB0SIDL) >> 5;
 		new_message.id |= MCP_read(MCP_RXB0SIDH) << 3;
@@ -88,14 +93,17 @@ struct CAN_message CAN_receive(void){
 		for(uint8_t i = 0; i < new_message.length; i++){
 			new_message.data[i] = MCP_read(MCP_RXB0D0 + i);
 		}
-		MCP_bit_mod(MCP_CANINTF, 0xff, 0);
+		
+	
 	}
+
 	else{
 		// message not received
+		printf("Message not received\n");
 		new_message.id = -1;
 	}
-	//_delay_ms(370);
+	MCP_bit_mod(MCP_CANINTF, 0xff, 0);
 	
 	return new_message;
-}
 
+}
