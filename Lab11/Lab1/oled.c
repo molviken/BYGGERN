@@ -48,7 +48,7 @@ void oled_init(void){
 }
 
 void oled_reset(void){
-	for (int i=0; i<8;i++){
+	for (uint8_t i=0x00; i<0x08;i++){
 		oled_clear_page(i);
 	}
 	//oled_init();
@@ -86,11 +86,11 @@ void oled_pos(uint8_t page,uint8_t coloumn_start,uint8_t coloumn_end){
 }
 
 
-void oled_print(char* word){
+void oled_print(char* word,uint8_t page,uint8_t coloumn_start,uint8_t coloumn_end){
 	
-	uint8_t coloumn_start = 0x09;
-	uint8_t coloumn_end = 0x11;
-	uint8_t page = 0x02;	
+	//uint8_t coloumn_start = 0x09;
+	//uint8_t coloumn_end = 0x11;
+	//uint8_t page = 0x02;	
 	for (int i = 0; word[i] != '\0'; i++){
 		if(word[i] == 44){
 			page +=0x01;

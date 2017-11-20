@@ -12,11 +12,9 @@
 #include <stdbool.h>
 
 struct Hashtag{
-	bool parent;
-	bool direction;
-	int *chosen;
-	bool moveY;
-	bool moveX;
+	int * moveY;
+	int * moveX;
+	
 };
 typedef struct{
 	char* text;
@@ -24,7 +22,7 @@ typedef struct{
 	char* line2;
 	char* line3;
 	char* line4;
-	
+	uint8_t page;
 	unsigned int sub_menus;
 	void (*goto_func)();
 	struct MENU *over;
@@ -39,8 +37,8 @@ MENU* menu_add_submenu(MENU *parent, void (*goto_func)(), char*name);
 MENU* menu_add_node(MENU *over, MENU *under, void (*goto_func)(), char*name);
 MENU* menu_change_sub(MENU *sub, int n);
 MENU* menu_create();
-void menu_nav();
-
+MENU* menu_nav();
+void menu_display(MENU* current_menu, int x);
 
 void menu_initialize();
 //void menu_system();
