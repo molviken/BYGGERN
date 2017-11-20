@@ -48,10 +48,9 @@ void pwm_setup(void){
 
 
 int PWM_set_puls_width(double angle){
-	//if(angle > 3001){angle = (angle - 1000);}
-	//else if(angle < 3000){ angle = (angle + 1000);} 
+	
 	if (angle >= 2000 && angle <= 4002){
-		//printf("angle: %d\n");
+		angle = 6001 - angle; // Inverting control
 		OCR1B = angle;
 	}
 	return 0;

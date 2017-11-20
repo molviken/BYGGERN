@@ -7,7 +7,7 @@
 #include "MCPkontroll.h"
 #include "MCP2515.h"
 #define DD_SS PB4
-
+#include "SPI.h"
 
 void select_CAN(void){
 	clear_bit(PORTB, DD_SS);

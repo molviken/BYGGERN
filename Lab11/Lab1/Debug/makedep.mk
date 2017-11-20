@@ -24,5 +24,7 @@ testMemory.c
 
 tests.c
 
+menu_functions.c
+
 uart.c
 

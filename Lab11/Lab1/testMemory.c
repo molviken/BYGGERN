@@ -1,11 +1,11 @@
 //#include <avr/io.h>
 //#include <stdlib.h>
 //#include "../../delte filer/uart.h"
-//
-//void EXT_MEM_Init(void){
-	//set_bit(MCUCR,SRE);
-	//set_bit(SFIOR,XMM2);
-//}
+////
+////void EXT_MEM_Init(void){
+	////set_bit(MCUCR,SRE);
+	////set_bit(SFIOR,XMM2);
+////}
 //
 //
 //

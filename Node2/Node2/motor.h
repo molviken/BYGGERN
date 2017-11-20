@@ -30,3 +30,4 @@ struct PI_reg motor_reg_init();
 struct PI_reg motor_reg_calc(uint8_t slider_right);
 void motor_position_control(uint8_t slider_right, struct PI_reg reg);
 int8_t motor_speed_control(int8_t speed);
+int16_t motor_set_enc_maxval();

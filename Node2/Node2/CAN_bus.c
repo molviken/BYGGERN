@@ -14,7 +14,7 @@ void CAN_timer_setup(){
 	set_bit(TCCR5B, CS51);	//Prescalar 8
 	set_bit(TCCR5B, WGM52); //Set CTC mode, TOP at OCR5A
 	
-	OCR3B = 10000;
+	OCR3B = 8000;
 }
 void CAN_init(){
 	MCP_init();

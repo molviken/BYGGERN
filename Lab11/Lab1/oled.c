@@ -62,7 +62,7 @@ void oled_goto_coloumn(uint8_t coloumn_start, uint8_t coloumn_end){
 	write_c(coloumn_start);
 	write_c(coloumn_end);
 }
-void oled_clear_page(page){
+void oled_clear_page(uint8_t page){
 	oled_goto_page(page);
 		for (int i = 0;i<128;i++){
 			write_d(0x00);
@@ -78,6 +78,7 @@ void oled_print_letter(char letter,uint8_t page, uint8_t coloumn_start,uint8_t c
 		ltr = pgm_read_byte(&(font8[letter-32][i]));
 		write_d(ltr);
 	}
+	//printf("printet letter\n");
 }
 void oled_pos(uint8_t page,uint8_t coloumn_start,uint8_t coloumn_end){
 	oled_goto_page(page);
@@ -85,7 +86,7 @@ void oled_pos(uint8_t page,uint8_t coloumn_start,uint8_t coloumn_end){
 }
 
 
-void oled_print(char* word ){
+void oled_print(char* word){
 	
 	uint8_t coloumn_start = 0x09;
 	uint8_t coloumn_end = 0x11;
@@ -93,8 +94,8 @@ void oled_print(char* word ){
 	for (int i = 0; word[i] != '\0'; i++){
 		if(word[i] == 44){
 			page +=0x01;
-			coloumn_start = 0x09;
-			coloumn_end = 0x11;
+			//coloumn_start = 0x09;
+			//coloumn_end = 0x11;
 			i++;
 		}			
 		oled_print_letter(word[i], page, coloumn_start,coloumn_end);

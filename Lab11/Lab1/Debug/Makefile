@@ -48,6 +48,7 @@ C_SRCS +=  \
 ../SPI.c \
 ../testMemory.c \
 ../tests.c \
+../menu_functions.c \
 ../uart.c
 
 
@@ -69,6 +70,7 @@ oled.o \
 SPI.o \
 testMemory.o \
 tests.o \
+menu_functions.o \
 uart.o
 
 OBJS_AS_ARGS +=  \
@@ -83,6 +85,7 @@ oled.o \
 SPI.o \
 testMemory.o \
 tests.o \
+menu_functions.o \
 uart.o
 
 C_DEPS +=  \
@@ -97,6 +100,7 @@ oled.d \
 SPI.d \
 testMemory.d \
 tests.d \
+menu_functions.d \
 uart.d
 
 C_DEPS_AS_ARGS +=  \
@@ -111,6 +115,7 @@ oled.d \
 SPI.d \
 testMemory.d \
 tests.d \
+menu_functions.d \
 uart.d
 
 OUTPUT_FILE_PATH +=Lab1.elf
@@ -127,6 +132,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

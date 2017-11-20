@@ -4,15 +4,18 @@
  * Created: 16.11.2017 20:49:39
  *  Author: oystmol
  */
-#define Kp 1
-#define Ki 0.1 
+#define Kp 0.9
+#define Ki 0.15
+#define Kd 0.06
 #define T 0.01
+#include "pwm.h"
 #include "pi.h"
 #include "motor.h"
 #include "CAN_bus.h"
+#include "joystick.h"
+
 struct PI_reg reg;
 int8_t speed;
-
 void PItimer_setup(){
 	// setting up timer 3
 	set_bit(TCCR3B, CS31);	//Prescalar 8
@@ -45,40 +48,60 @@ void pid_init(){
 	//_delay_ms(200);
 }
 
-void PI_regulator(uint8_t position){
-	reg.y = motor_read()/(0x21); 
+void PI_regulator(uint8_t position, int16_t maxvalue){
+	int16_t den = maxvalue/0x00ff;
+	//reg.y = motor_read()/den;
+	reg.y = motor_read()/(den);
 	reg.r = position; //Slider position
 	reg.e = reg.r-reg.y;
 	
-	if (reg.e<0){reg.e = -reg.e;}
-	
-	static uint8_t integral;
+	static int integral = 0;
 	integral  = integral + reg.e;
 	
-	reg.u = Kp*reg.e+T*Ki*integral;
+	static int prev_pos = 0;
+	static int derivative = 0;
+	derivative = reg.y - prev_pos;
+
+	reg.u = Kp*reg.e + Ki*integral + Kd*derivative;
 	
-	if(reg.u > 0){
-		speed = reg.u;
-		if (speed < 0x00)
-		{speed = -speed;}
+	speed = abs(reg.u);
+	
+	prev_pos = reg.y;
+	
+	if(abs(reg.e) < 0x07 ){
+		speed = 0;
+		reg.e = 0;
+		integral = 0;
 		}
-	//printf("y: %d	  r: %d	   speed: %d	u: %d	e: %d \n", reg.y, reg.r,speed, reg.u, reg.e);
-	if ( reg.e < 0x06){
-		dac_write(0x00);
-	}
-	else if(reg.y > reg.r){
+	else if(reg.y < reg.r){
 		//printf("Going left\n");
-		Go_Left;
-		dac_write(speed);
+		Go_Right;
 	}
 	else{
 		//printf("Going right \n");
-		Go_Right;
-		dac_write(speed);
+		Go_Left;
 	}
+	printf("e: %d	int: %d	speed: %d	r: %d	y: %d \n", reg.e, integral, speed, reg.r, reg.y);
+	dac_write(speed);
 }
 
+void joystick_drive(uint8_t x_pos, uint8_t servo){
+	uint8_t speed;
+	PWM_control(servo);
+	if(x_pos>137){
+		speed = (x_pos- 137)*0x1.6p-1;
+		Go_Right;
 
-//ISR(TIMER3_OVF_vect){
-	//PI_regulator();
-//}
+	}
+	else if(x_pos<127){
+		speed = (127 - x_pos)*0x1.6p-1;
+		Go_Left;
+
+	}
+	else{
+		speed = 0x00;
+	}
+		printf("X: %d		speed: %d\n",x_pos,speed);
+	dac_write(speed);
+	
+}

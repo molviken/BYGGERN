@@ -26,7 +26,7 @@ void CAN_init(){
 		//printf("NOT in NORMAL mode!\n");
 	}
 	
-	char temp = MCP_read(MCP_CANCTRL);
+	MCP_read(MCP_CANCTRL);
 	
 }
 

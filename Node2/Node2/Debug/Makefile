@@ -41,6 +41,7 @@ C_SRCS +=  \
 ../adc_node2.c \
 ../CAN_bus.c \
 ../dac.c \
+../game_options.c \
 ../ir_detector.c \
 ../joystick.c \
 ../joystick_can.c \
@@ -67,6 +68,7 @@ adc.o \
 adc_node2.o \
 CAN_bus.o \
 dac.o \
+game_options.o \
 ir_detector.o \
 joystick.o \
 joystick_can.o \
@@ -86,6 +88,7 @@ adc.o \
 adc_node2.o \
 CAN_bus.o \
 dac.o \
+game_options.o \
 ir_detector.o \
 joystick.o \
 joystick_can.o \
@@ -105,6 +108,7 @@ adc.d \
 adc_node2.d \
 CAN_bus.d \
 dac.d \
+game_options.d \
 ir_detector.d \
 joystick.d \
 joystick_can.d \
@@ -124,6 +128,7 @@ adc.d \
 adc_node2.d \
 CAN_bus.d \
 dac.d \
+game_options.d \
 ir_detector.d \
 joystick.d \
 joystick_can.d \
@@ -152,6 +157,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

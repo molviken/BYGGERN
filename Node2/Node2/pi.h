@@ -11,8 +11,10 @@
 #define clear_bit( reg, bit ) (reg &= ~(1 << bit))
 
 void PItimer_setup();
-void PI_regulator(uint8_t position);
+void PI_regulator(uint8_t position, int16_t maxvalue);
 void pid_init();
 struct PI_reg{
 	int16_t r, y, e, u;
 };
+
+void joystick_drive(uint8_t x_pos, uint8_t servo);

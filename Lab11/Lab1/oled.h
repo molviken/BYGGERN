@@ -17,7 +17,7 @@ void oled_pos(uint8_t page,uint8_t coloumn_start,uint8_t coloumn_end);
 void oled_init();
 void oled_reset(void);
 void oled_draw();
-void oled_clear_page(page);
+void oled_clear_page(uint8_t page);
 void oled_home(void);
 void oled_pos(uint8_t page,uint8_t coloumn_start,uint8_t coloumn_end);
 void oled_print(char* word );

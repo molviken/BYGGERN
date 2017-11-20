@@ -58,37 +58,35 @@ int16_t motor_read(){
 	set_bit(PORTH, SEL); // Sets Sel
 	_delay_us(100);
 	bits |= PINK;
-	
-	//encoder_reset();
+
 	set_bit(PORTH, RST); 
 	set_bit(PORTH, OE); // sets !OE high to disable output of encoder
 	if (-bits < 0x0000){
 		bits = -0x0000;
 	}
-	else if(-bits > 0x2134){
-		bits = -0x2134;
-	}
+	//else if(-bits > 0x2134){
+		//bits = -0x2134;
+	//}
 	return -bits;
 }
 
 void encoder_reset(){
 	clear_bit(PORTH, RST); // Toggle !RST to set internal counter = 0
 	_delay_us(20);
-
+	set_bit(PORTH, RST); 
 }
 
 void test_program(){
-	printf("Inni test");
 	if(motor_read()>8000){
 
 		Go_Left;
-		dac_write(0x55);
+		dac_write(0x35);
 		printf("Going left%d \n", motor_read());
 	}
 	else if (motor_read() <1000){
 
 		Go_Right;
-		dac_write(0x55);
+		dac_write(0x35);
 		printf("Going right: %d \n", motor_read());
 	}
 }
@@ -97,15 +95,14 @@ void motor_cal(){
 	Go_Left;
 	dac_write(0x55);
 	_delay_ms(2000);
-	
 	encoder_reset();
-	
-	//Go_Right;
-	//_delay_ms(1000);	
-	//encoder_maxvalue = motor_read();
-	//printf("Encoder max value: %x", motor_read());
 }
 
+int16_t motor_set_enc_maxval(){		
+	Go_Right;
+	_delay_ms(1000);
+	return motor_read();
+}
 //struct PI_reg motor_reg_init(){
 	//struct PI_reg regulator;
 	//regulator.Kp = -0x1p-1;

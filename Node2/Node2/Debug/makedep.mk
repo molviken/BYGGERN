@@ -10,6 +10,8 @@ CAN_bus.c
 
 dac.c
 
+game_options.c
+
 ir_detector.c
 
 joystick.c

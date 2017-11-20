@@ -139,6 +139,12 @@
     <Compile Include="fonts.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="game_options.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="game_options.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="ir_detector.c">
       <SubType>compile</SubType>
     </Compile>
