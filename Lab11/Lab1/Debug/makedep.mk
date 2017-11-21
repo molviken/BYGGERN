@@ -6,6 +6,8 @@ adc.c
 
 CAN_bus.c
 
+Eeprom.c
+
 joystick.c
 
 joystick_can.c

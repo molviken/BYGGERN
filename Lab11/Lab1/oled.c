@@ -64,7 +64,9 @@ void oled_goto_coloumn(uint8_t coloumn_start, uint8_t coloumn_end){
 }
 void oled_clear_page(uint8_t page){
 	oled_goto_page(page);
-		for (int i = 0;i<128;i++){
+	oled_goto_coloumn(0x00,0x7f);
+		for (uint8_t i = 0;i<0x7f;i++){
+			oled_goto_coloumn(i,0x7f);
 			write_d(0x00);
 		}
 }

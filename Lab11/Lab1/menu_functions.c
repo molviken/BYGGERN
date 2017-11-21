@@ -5,35 +5,36 @@
  *  Author: arefv
  */ 
 #include "menu_functions.h"
+#include "menu_system.h"
+#include "CAN_bus.h"
+int menu_start_game(int mode, int opt){
+	start_game(mode, opt);
+}
 
-void menu_start_game(){
+int menu_print_HS(int mode, int opt){
 	
 }
 
-void menu_print_HS(){
+int menu_reset_HS(int mode, int opt){
 	
 }
 
-void menu_reset_HS(){
-	
+int menu_choose_goalie_mode(int mode, int opt){
+	return 2;
 }
 
-void menu_choose_goalie_mode(){
-	
+int menu_choose_survival_mode(int mode, int opt){
+	return 1;
 }
 
-void menu_choose_survival_mode(){
-	
+int menu_controller_joystick(int mode, int opt){
+	return 2;
 }
 
-void menu_controller_joystick(){
-	
+int menu_controller_slider(int mode, int opt){
+	return 1;
 }
 
-void menu_controller_slider(){
-	
-}
-
-void program_exit(){
+int program_exit(int mode, int opt){
 	exit(1);
 }

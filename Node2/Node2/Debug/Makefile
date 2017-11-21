@@ -52,6 +52,7 @@ C_SRCS +=  \
 ../sonoid.c \
 ../SPI.c \
 ../pwm.c \
+../storage.c \
 ../timer.c \
 ../TWI_Master.c \
 ../uart.c
@@ -79,6 +80,7 @@ pi.o \
 sonoid.o \
 SPI.o \
 pwm.o \
+storage.o \
 timer.o \
 TWI_Master.o \
 uart.o
@@ -99,6 +101,7 @@ pi.o \
 sonoid.o \
 SPI.o \
 pwm.o \
+storage.o \
 timer.o \
 TWI_Master.o \
 uart.o
@@ -119,6 +122,7 @@ pi.d \
 sonoid.d \
 SPI.d \
 pwm.d \
+storage.d \
 timer.d \
 TWI_Master.d \
 uart.d
@@ -139,6 +143,7 @@ pi.d \
 sonoid.d \
 SPI.d \
 pwm.d \
+storage.d \
 timer.d \
 TWI_Master.d \
 uart.d
@@ -157,6 +162,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

@@ -39,6 +39,7 @@ SUBDIRS :=
 C_SRCS +=  \
 ../adc.c \
 ../CAN_bus.c \
+../Eeprom.c \
 ../joystick.c \
 ../joystick_can.c \
 ../main.c \
@@ -61,6 +62,7 @@ ASM_SRCS +=
 OBJS +=  \
 adc.o \
 CAN_bus.o \
+Eeprom.o \
 joystick.o \
 joystick_can.o \
 main.o \
@@ -76,6 +78,7 @@ uart.o
 OBJS_AS_ARGS +=  \
 adc.o \
 CAN_bus.o \
+Eeprom.o \
 joystick.o \
 joystick_can.o \
 main.o \
@@ -91,6 +94,7 @@ uart.o
 C_DEPS +=  \
 adc.d \
 CAN_bus.d \
+Eeprom.d \
 joystick.d \
 joystick_can.d \
 main.d \
@@ -106,6 +110,7 @@ uart.d
 C_DEPS_AS_ARGS +=  \
 adc.d \
 CAN_bus.d \
+Eeprom.d \
 joystick.d \
 joystick_can.d \
 main.d \
@@ -132,6 +137,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

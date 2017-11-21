@@ -68,7 +68,7 @@ void PI_regulator(uint8_t position, int16_t maxvalue){
 	
 	prev_pos = reg.y;
 	
-	if(abs(reg.e) < 0x07 ){
+	if(abs(reg.e) < 0x07){
 		speed = 0;
 		reg.e = 0;
 		integral = 0;
@@ -81,7 +81,7 @@ void PI_regulator(uint8_t position, int16_t maxvalue){
 		//printf("Going right \n");
 		Go_Left;
 	}
-	printf("e: %d	int: %d	speed: %d	r: %d	y: %d \n", reg.e, integral, speed, reg.r, reg.y);
+	//printf("e: %d	int: %d	speed: %d	r: %d	y: %d \n", reg.e, integral, speed, reg.r, reg.y);
 	dac_write(speed);
 }
 
@@ -101,7 +101,7 @@ void joystick_drive(uint8_t x_pos, uint8_t servo){
 	else{
 		speed = 0x00;
 	}
-		printf("X: %d		speed: %d\n",x_pos,speed);
+		//printf("X: %d		speed: %d\n",x_pos,speed);
 	dac_write(speed);
 	
 }

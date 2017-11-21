@@ -23,3 +23,4 @@ int CAN_check_error(void);
 int CAN_completed_transmit(void);
 void CAN_int_vect(void);
 struct CAN_message CAN_receive(void);
+int start_game(int mode, int opt);

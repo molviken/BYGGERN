@@ -10,7 +10,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-
+typedef struct{
+	int *game_mode;
+	int *controller_opt;
+	}OPTIONS;
 struct Hashtag{
 	int * moveY;
 	int * moveX;
@@ -22,9 +25,11 @@ typedef struct{
 	char* line2;
 	char* line3;
 	char* line4;
+	int game_mode;
+	int controller_option;
 	uint8_t page;
 	unsigned int sub_menus;
-	void (*goto_func)();
+	int (*goto_func)();
 	struct MENU *over;
 	struct MENU *under;
 	struct MENU *parent;
@@ -38,9 +43,7 @@ MENU* menu_add_node(MENU *over, MENU *under, void (*goto_func)(), char*name);
 MENU* menu_change_sub(MENU *sub, int n);
 MENU* menu_create();
 MENU* menu_nav();
-void menu_display(MENU* current_menu, int x);
-
-void menu_initialize();
+MENU* menu_display(MENU* current_menu, int x);
 //void menu_system();
 ////char create_string(struct menu_element liste[5]);
 //void menu_navigate();

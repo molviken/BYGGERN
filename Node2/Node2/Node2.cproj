@@ -205,6 +205,9 @@
     <Compile Include="pwm.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="storage.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="timer.c">
       <SubType>compile</SubType>
     </Compile>

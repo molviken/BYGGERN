@@ -121,7 +121,13 @@
     <Compile Include="CAN_bus.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Eeprom.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="fonts.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Eeprom.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="joystick.c">

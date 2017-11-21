@@ -7,7 +7,7 @@
 #include "CAN_bus.h"
 #include "MCP2515.h"
 #include "MCPkontroll.h"
-
+#include "joystick.h"
 uint8_t rx_flag = 0;
 
 void CAN_init(){
@@ -107,3 +107,52 @@ struct CAN_message CAN_receive(void){
 //ISR(INT0_vect){
 	//CAN_int_vect();
 //}
+int start_game(int mode, int opt){
+	struct CAN_message chosen_game;
+	chosen_game.id = 10;
+	chosen_game.length = 8;
+	struct CAN_message game_over_check;
+	int8_t game_mode = mode;
+	int8_t controller_mode = opt;
+	struct Joystick joy;
+	struct Slider sli;
+	
+	if(game_mode == 1){
+		switch(controller_mode){
+			case 1:
+			chosen_game.id = 10;
+			break;
+			
+			case 2:
+			chosen_game.id = 11;
+			break;
+		}
+	}
+	else if(game_mode == 2){
+		switch(controller_mode){
+			case 1:
+			chosen_game.id = 14;
+			break;
+
+			case 2:
+			chosen_game.id = 15;
+			break;
+		}
+	}
+	//// receiving data from bus every 10 ms.
+	//if(TIFR & (1 << OCF1B)){ // if counter has reached OCR1B
+		//game_over_check = CAN_receive();
+		//TCNT1 = 0;
+		//TIFR |= (1 << OCF1B);
+	//}
+	while(game_over_check.id != 1){
+		game_over_check = CAN_receive();
+		joy = read_joystick_position(channel1, channel2);
+		sli = read_slider_position(channel3, channel4);
+		chosen_game.data[0] = (uint8_t)joy.x_pos;
+		chosen_game.data[3] = (uint8_t)sli.slider2;
+		printf("trans id: %d rec id: %d  \n",chosen_game.id, game_over_check.id);
+		CAN_transmit(chosen_game);
+		_delay_ms(10);
+	}
+}

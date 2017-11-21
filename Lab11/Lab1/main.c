@@ -19,6 +19,7 @@
 #include "MCP2515.h"
 #include "menu_system.h"
 #include "menu_functions.h"
+#include "Eeprom.h"
 volatile char* oled_adresse = 0x1200;
 volatile char* adc_adresse = 0x1400;
 volatile char* ram_adresse = 0x1800;
@@ -32,30 +33,50 @@ int main(void)
 	oled_reset();
 	adc_init();
 	CAN_init();
-	menu_initialize();
+//	menu_initialize();
 	printf("Init er good\n");
-	struct CAN_message usb_board;
-	usb_board.id = 3;
-	usb_board.length = 4;
+	//struct CAN_message usb_board;
+	//usb_board.id = 3;
+	//usb_board.length = 4;
+	
+    // Lager spillet i denne CAN_messagen
+    struct CAN_message chosen_game;
+    // Velger at hele data arrayet skal kunne brukes.
+    chosen_game.length = 8;
+    // Setter spillet i default -> survival med slider control
+    chosen_game.id = 0x0a;
+    chosen_game.data[5] = 1;
+    chosen_game.data[6] = 2;
+	
 	oled_reset();
 	
 	MENU *main_menu = menu_create();
+	//oled_reset();
+	printf("reseted\n");
+	//oled_print("main1,main2,main3,amin3",0x01,0x09,0x11);
+	
+	
+	//EEPROMTEST
+	uint8_t Adr = 0x01;
+	uint8_t Data = 0x02;
+	EEPROM_write(Adr, Data);
+	char* dat = EEPROM_read(Adr);
+	printf("data inn %x, data ut %x", Data, dat);
+	
+	
+	
 	while(1)
     {
 		//main_menu = menu_nav(main_menu);	
-		usb_board.data[0] = (uint8_t)read_joystick_position(channel1, channel2).x_pos;
-		usb_board.data[1] = (uint8_t)read_joystick_position(channel1, channel2).y_pos;
-		usb_board.data[2] = (uint8_t)read_slider_position(channel3,channel4).slider1;
-		usb_board.data[3] = (uint8_t)read_slider_position(channel3,channel4).slider2;
-		//usb_board.data[4] = (int)sonoid_button();
-		//printf("x pos: %d		slider right: %d		Sonoid: %i \n", usb_board.data[0],usb_board.data[3], usb_board.data[4]);
 		
-		CAN_transmit(usb_board);
-	
-		//printf("Status:  %i \n", status);
-
-		//slider_button();
-		//joystick_pressed();
-		//joystick_navigate_vertical();
+		
+		//usb_board.data[0] = (uint8_t)read_joystick_position(channel1, channel2).x_pos;
+		//usb_board.data[1] = (uint8_t)read_joystick_position(channel1, channel2).y_pos;
+		//usb_board.data[2] = (uint8_t)read_slider_position(channel3,channel4).slider1;
+		//usb_board.data[3] = (uint8_t)read_slider_position(channel3,channel4).slider2;
+		//usb_board.data[4] = (int)sonoid_button();
+		
+		//chosen_game = CAN_receive();
+		//CAN_transmit(usb_board);
 	}
 }

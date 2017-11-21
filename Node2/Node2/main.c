@@ -25,8 +25,8 @@
 #include <util/delay.h>
 #include "sonoid.h"
 #include "pi.h"
-int main(void)
-{
+
+int main(void){
 	sei();//Enable Global interrupts
 	USART_Init(103);
 	adc_node2_init();
@@ -35,73 +35,93 @@ int main(void)
 	adc_node2_init();
 	motor_init();
 	TWI_Master_Initialise();
-	//motor_cal();
-	int16_t maxvalue = motor_set_enc_maxval();
-	printf("max value: %d", maxvalue);
 	PItimer_setup();
 	CAN_timer_setup();
+
 	printf("Init er good... \n");
-	int channel_change = 0;
-	uint16_t threshold = ir_threshold(0xa);
-	int tempScore = 0;
-	int temp2Score = 0;
-	struct Score game1;
-	struct Score game2;
-	game1.score = 0;
-	game1.flag = 1;
-	game2.score = 0;
-	game2.flag = 1;
-	struct CAN_message copy_message;
-	struct Sonoid shooter;	
 	
-	struct CAN_message test_copy;
-	while(1) {
-		//printf("Yes/no:  %i\n", ir_detection(0xa,threshold));
-		
-		if(TIFR5 & (1 << OCF5B)){ // if counter has reached OCR5B
-			copy_message = CAN_receive();
-			tempScore = game1.score;
-			temp2Score = game2.score;
-			if(channel_change){
-				game1 = ir_score_update(threshold, game1);
-				if(tempScore != game1.score){
-					//printf("Dine poeng: %i \n", game1.score);
-				}
-			}
-			if(!channel_change){
-				game2 = ir_score_update(threshold, game2);
-				if(temp2Score != game2.score){
-					//printf("Dine poeng: %i \n", game2.score);
-				}
-			}
+	// Necessary Initializing
+	int seconds = 0;
+	int second_check = 0;   // second updater
+
+	int channel_change = 0; // change which ir we check
+	uint16_t threshold = ir_threshold(0xa);
+
+	struct Score scorecount; // initializing the IRs
+	struct Score ir_bottom;
+
+	scorecount.score = 0;
+	scorecount.flag = 1;
+	ir_bottom.score = 0;
+	ir_bottom.flag = 1;
+	motor_cal();
+	
+	int16_t max_encoder_value = motor_set_enc_maxval();
+	
+	struct CAN_message game;
+
+	while(true){
+		if(TIFR3 & (1 << OCF3B)){
+			game = CAN_receive();
 			adc_node2_switch(channel_change);
 			channel_change = !channel_change;
+			// updating second checker
+			second_check += 1;
+			if(second_check == 10){
+				seconds += 1;
+				//printf("second check: %d \n", seconds);
+				second_check = 0;
+			}
 			// Clear interrupt and reset counter
-			TCNT5 = 0;
-			TIFR5 |= (1 << OCF5B);
+			TCNT3 = 0;
+			TIFR3 |= (1 << OCF3B);
 		}
-		
-		shooter.fire = copy_message.data[4];
-		if (copy_message.id != 0xff){
-			//printf("Fire: %i \n",shooter.fire);
-			PWM_control(copy_message.data[0]);	//Slider steering
-			//shooter = sonoid_fire(shooter);
-			//joystick_drive(copy_message.data[0],copy_message.data[3]); //Joy steer
-		}
-		
-		// Checking if the counter has counted the integral period
-		if(TIFR3 & (1 << OCF3B)){ // if counter has reached OCR3B
-			//PI_regulator(copy_message.data[3], maxvalue);
-			// Clear interrupt and reset counter
-			TCNT3 = 0;					// Counter
-			TIFR3 |= (1 << OCF3B);		// bit in interrupt register changes on match between top and counter
-		}
-		_delay_ms(100);
-		
+		if(game.id != 1){
+			switch(game.id){
+				case 10:
+				PWM_control(game.data[0]);
+				PI_regulator(game.data[3], max_encoder_value);
+				scorecount.score = seconds;
+				//printf("score (seconds): %d \n", seconds);
+				break;
+				
+				case 11:
+				joystick_drive(game.data[0],game.data[3]);
+				scorecount.score = seconds;
+				break;
 
-		
-		printf("GS1: %i		GS2: %i\n", game1.score, game2.score);
-		
+				case 14:
+				PWM_control(game.data[0]);
+				PI_regulator(game.data[3], max_encoder_value);
+				if(!channel_change){scorecount = ir_score_update(threshold,scorecount);}
+				break;
+				
+				case 15:
+				joystick_drive(game.data[0],game.data[3]);
+				if(!channel_change){scorecount = ir_score_update(threshold,scorecount);}
+				break;
+			}
+			if(channel_change){
+				ir_bottom = ir_score_update(threshold, ir_bottom);
+				//printf("ir_bottom = %d	channel_change = %d\n", ir_bottom.score, channel_change);
+				}
+			if(ir_bottom.score > 0){
+				game.data[7] = scorecount.score;
+				printf("score: %d\n", scorecount.score);
+				seconds = 0;
+				ir_bottom.score = 0;
+				game.id = 0x01;
+				}
+				//printf("id: %d		ir: %d		flag: %i\n", game.id, ir_bottom.score, ir_bottom.flag);
+				//printf("score%d\n",scorecount.score);
+				CAN_transmit(game);
+			}
+			else{
+				scorecount.score = 0;
+			}
+
+		//printf("ir%d\n",ir_bottom.score);
+		_delay_ms(100);
 	}
 	return 0;
 }

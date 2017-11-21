@@ -1,11 +1,11 @@
+//#include "CAN_bus.h"
+int menu_start_game(int mode, int opt);
+int menu_print_HS(int mode, int opt);
+int menu_reset_HS(int mode, int opt);
+int menu_choose_goalie_mode(int mode, int opt);
+int menu_choose_survival_mode(int mode, int opt);
+int menu_controller_joystick(int mode, int opt);
+int menu_controller_slider(int mode, int opt);
+int program_exit(int mode, int opt);
 
-
-void menu_start_game();
-void menu_start_game();
-void menu_print_HS();
-void menu_reset_HS();
-void menu_choose_goalie_mode();
-void menu_choose_survival_mode();
-void menu_controller_joystick();
-void menu_controller_slider();
-void program_exit();
+//int start_game(int mode, int opt);
