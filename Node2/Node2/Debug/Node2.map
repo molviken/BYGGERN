@@ -1189,19 +1189,19 @@ END GROUP
  .debug_str     0x000006f8       0x37 uart.o
                                 0x17e (size before relaxing)
 
-.debug_loc      0x00000000     0x147b
+.debug_loc      0x00000000     0x1441
  *(.debug_loc)
  .debug_loc     0x00000000       0x44 adc_node2.o
  .debug_loc     0x00000044      0x2c0 CAN_bus.o
  .debug_loc     0x00000304       0x75 dac.o
  .debug_loc     0x00000379      0x4fc ir_detector.o
- .debug_loc     0x00000875      0x3a4 main.o
- .debug_loc     0x00000c19      0x227 MCPkontroll.o
- .debug_loc     0x00000e40      0x1ce motor.o
- .debug_loc     0x0000100e      0x238 pi.o
- .debug_loc     0x00001246       0xbf pwm.o
- .debug_loc     0x00001305      0x150 TWI_Master.o
- .debug_loc     0x00001455       0x26 uart.o
+ .debug_loc     0x00000875      0x36a main.o
+ .debug_loc     0x00000bdf      0x227 MCPkontroll.o
+ .debug_loc     0x00000e06      0x1ce motor.o
+ .debug_loc     0x00000fd4      0x238 pi.o
+ .debug_loc     0x0000120c       0xbf pwm.o
+ .debug_loc     0x000012cb      0x150 TWI_Master.o
+ .debug_loc     0x0000141b       0x26 uart.o
 
 .debug_macinfo
  *(.debug_macinfo)

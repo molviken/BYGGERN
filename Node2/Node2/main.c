@@ -108,6 +108,7 @@ int main(void){
 			if(ir_bottom.score > 0){
 				game.data[7] = scorecount.score;
 				printf("score: %d\n", scorecount.score);
+				game.data[6] = seconds;
 				seconds = 0;
 				ir_bottom.score = 0;
 				game.id = 0x01;

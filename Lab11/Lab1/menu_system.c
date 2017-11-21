@@ -347,6 +347,29 @@ MENU* menu_nav(MENU* current_menu){
 		
 	 }
 	 else if(x < 150 && x > 120){navx = false;}
-	printf("Game mode: %i		Controller: %i \n",current_menu->game_mode,current_menu->controller_option);
+	//printf("Game mode: %i		Controller: %i \n",current_menu->game_mode,current_menu->controller_option);
 	return current_menu;
 }
+
+void save_highscore(uint8_t highscore){
+
+	uint8_t min = highscore;
+	uint8_t adr = 0x00;
+	
+	for (uint8_t i = 0x01; i<0x06; i++){
+		uint8_t temp = EEPROM_read(i);
+		if (temp >= 0xff)
+		{temp = 0;
+		}
+		if (min > temp)
+		{min = temp;
+			printf("min: %x\n",min);
+		adr = i;
+		}
+	}
+	
+	if (adr != 0x00)
+	{printf("Adr: %x\n", adr);
+		EEPROM_write( adr, highscore);
+	}
+}	

@@ -23,9 +23,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_str    0000072f  00000000  00000000  00007068  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000147b  00000000  00000000  00007797  2**0
+ 10 .debug_loc    00001441  00000000  00000000  00007797  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000230  00000000  00000000  00008c12  2**0
+ 11 .debug_ranges 00000230  00000000  00000000  00008bd8  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1150,7 +1150,7 @@ int main(void){
      5e6:	df 93       	push	r29
      5e8:	cd b7       	in	r28, 0x3d	; 61
      5ea:	de b7       	in	r29, 0x3e	; 62
-     5ec:	64 97       	sbiw	r28, 0x14	; 20
+     5ec:	63 97       	sbiw	r28, 0x13	; 19
      5ee:	0f b6       	in	r0, 0x3f	; 63
      5f0:	f8 94       	cli
      5f2:	de bf       	out	0x3e, r29	; 62
@@ -1192,8 +1192,8 @@ int main(void){
      616:	8a e0       	ldi	r24, 0x0A	; 10
      618:	90 e0       	ldi	r25, 0x00	; 0
      61a:	38 df       	rcall	.-400    	; 0x48c <ir_threshold>
-     61c:	98 8b       	std	Y+16, r25	; 0x10
-     61e:	8f 87       	std	Y+15, r24	; 0x0f
+     61c:	9f 87       	std	Y+15, r25	; 0x0f
+     61e:	8e 87       	std	Y+14, r24	; 0x0e
 
 	struct Score scorecount; // initializing the IRs
 	struct Score ir_bottom;
@@ -1201,8 +1201,8 @@ int main(void){
 	scorecount.score = 0;
 	scorecount.flag = 1;
      620:	21 e0       	ldi	r18, 0x01	; 1
-     622:	2b 8b       	std	Y+19, r18	; 0x13
-     624:	1c 8a       	std	Y+20, r1	; 0x14
+     622:	2a 8b       	std	Y+18, r18	; 0x12
+     624:	1b 8a       	std	Y+19, r1	; 0x13
 	ir_bottom.score = 0;
 	ir_bottom.flag = 1;
      626:	c1 2c       	mov	r12, r1
@@ -1214,16 +1214,16 @@ int main(void){
 	
 	int16_t max_encoder_value = motor_set_enc_maxval();
      630:	7c d1       	rcall	.+760    	; 0x92a <motor_set_enc_maxval>
-     632:	9a 8b       	std	Y+18, r25	; 0x12
-     634:	89 8b       	std	Y+17, r24	; 0x11
+     632:	99 8b       	std	Y+17, r25	; 0x11
+     634:	88 8b       	std	Y+16, r24	; 0x10
 	struct Score scorecount; // initializing the IRs
 	struct Score ir_bottom;
 
 	scorecount.score = 0;
 	scorecount.flag = 1;
 	ir_bottom.score = 0;
-     636:	21 2c       	mov	r2, r1
-     638:	31 2c       	mov	r3, r1
+     636:	41 2c       	mov	r4, r1
+     638:	51 2c       	mov	r5, r1
 	uint16_t threshold = ir_threshold(0xa);
 
 	struct Score scorecount; // initializing the IRs
@@ -1231,7 +1231,7 @@ int main(void){
 
 	scorecount.score = 0;
      63a:	61 2c       	mov	r6, r1
-     63c:	51 2c       	mov	r5, r1
+     63c:	1d 86       	std	Y+13, r1	; 0x0d
 	
 	// Necessary Initializing
 	int seconds = 0;
@@ -1246,209 +1246,204 @@ int main(void){
 	// Necessary Initializing
 	int seconds = 0;
 	int second_check = 0;   // second updater
-     642:	1e 86       	std	Y+14, r1	; 0x0e
-     644:	1d 86       	std	Y+13, r1	; 0x0d
+     642:	1c 86       	std	Y+12, r1	; 0x0c
+     644:	1b 86       	std	Y+11, r1	; 0x0b
 	CAN_timer_setup();
 
 	printf("Init er good... \n");
 	
 	// Necessary Initializing
 	int seconds = 0;
-     646:	1c 86       	std	Y+12, r1	; 0x0c
-     648:	1b 86       	std	Y+11, r1	; 0x0b
-			// updating second checker
-			second_check += 1;
-			if(second_check == 10){
-				seconds += 1;
-				//printf("second check: %d \n", seconds);
-				second_check = 0;
-     64a:	41 2c       	mov	r4, r1
+     646:	21 2c       	mov	r2, r1
+     648:	31 2c       	mov	r3, r1
 	int16_t max_encoder_value = motor_set_enc_maxval();
 	
 	struct CAN_message game;
 
 	while(true){
 		if(TIFR3 & (1 << OCF3B)){
-     64c:	c2 9b       	sbis	0x18, 2	; 24
-     64e:	21 c0       	rjmp	.+66     	; 0x692 <main+0xae>
+     64a:	c2 9b       	sbis	0x18, 2	; 24
+     64c:	20 c0       	rjmp	.+64     	; 0x68e <main+0xaa>
 			game = CAN_receive();
-     650:	ce 01       	movw	r24, r28
-     652:	01 96       	adiw	r24, 0x01	; 1
-     654:	9b de       	rcall	.-714    	; 0x38c <CAN_receive>
-     656:	99 80       	ldd	r9, Y+1	; 0x01
-     658:	7b 80       	ldd	r7, Y+3	; 0x03
-     65a:	8e 80       	ldd	r8, Y+6	; 0x06
+     64e:	ce 01       	movw	r24, r28
+     650:	01 96       	adiw	r24, 0x01	; 1
+     652:	9c de       	rcall	.-712    	; 0x38c <CAN_receive>
+     654:	99 80       	ldd	r9, Y+1	; 0x01
+     656:	7b 80       	ldd	r7, Y+3	; 0x03
+     658:	8e 80       	ldd	r8, Y+6	; 0x06
 			adc_node2_switch(channel_change);
-     65c:	c5 01       	movw	r24, r10
-     65e:	b4 dd       	rcall	.-1176   	; 0x1c8 <adc_node2_switch>
+     65a:	c5 01       	movw	r24, r10
+     65c:	b5 dd       	rcall	.-1174   	; 0x1c8 <adc_node2_switch>
 			channel_change = !channel_change;
-     660:	81 e0       	ldi	r24, 0x01	; 1
-     662:	ab 28       	or	r10, r11
-     664:	09 f0       	breq	.+2      	; 0x668 <main+0x84>
-     666:	80 e0       	ldi	r24, 0x00	; 0
-     668:	a8 2e       	mov	r10, r24
-     66a:	b1 2c       	mov	r11, r1
+     65e:	81 e0       	ldi	r24, 0x01	; 1
+     660:	ab 28       	or	r10, r11
+     662:	09 f0       	breq	.+2      	; 0x666 <main+0x82>
+     664:	80 e0       	ldi	r24, 0x00	; 0
+     666:	a8 2e       	mov	r10, r24
+     668:	b1 2c       	mov	r11, r1
 			// updating second checker
 			second_check += 1;
-     66c:	8d 85       	ldd	r24, Y+13	; 0x0d
-     66e:	9e 85       	ldd	r25, Y+14	; 0x0e
-     670:	01 96       	adiw	r24, 0x01	; 1
-     672:	9e 87       	std	Y+14, r25	; 0x0e
-     674:	8d 87       	std	Y+13, r24	; 0x0d
+     66a:	8b 85       	ldd	r24, Y+11	; 0x0b
+     66c:	9c 85       	ldd	r25, Y+12	; 0x0c
+     66e:	01 96       	adiw	r24, 0x01	; 1
+     670:	9c 87       	std	Y+12, r25	; 0x0c
+     672:	8b 87       	std	Y+11, r24	; 0x0b
 			if(second_check == 10){
-     676:	0a 97       	sbiw	r24, 0x0a	; 10
-     678:	39 f4       	brne	.+14     	; 0x688 <main+0xa4>
+     674:	0a 97       	sbiw	r24, 0x0a	; 10
+     676:	29 f4       	brne	.+10     	; 0x682 <main+0x9e>
 				seconds += 1;
-     67a:	ab 85       	ldd	r26, Y+11	; 0x0b
-     67c:	bc 85       	ldd	r27, Y+12	; 0x0c
-     67e:	11 96       	adiw	r26, 0x01	; 1
-     680:	bc 87       	std	Y+12, r27	; 0x0c
-     682:	ab 87       	std	Y+11, r26	; 0x0b
+     678:	9f ef       	ldi	r25, 0xFF	; 255
+     67a:	29 1a       	sub	r2, r25
+     67c:	39 0a       	sbc	r3, r25
 				//printf("second check: %d \n", seconds);
 				second_check = 0;
-     684:	1d 86       	std	Y+13, r1	; 0x0d
-     686:	4e 86       	std	Y+14, r4	; 0x0e
+     67e:	1b 86       	std	Y+11, r1	; 0x0b
+     680:	1c 86       	std	Y+12, r1	; 0x0c
 			}
 			// Clear interrupt and reset counter
 			TCNT3 = 0;
-     688:	e4 e9       	ldi	r30, 0x94	; 148
-     68a:	f0 e0       	ldi	r31, 0x00	; 0
-     68c:	11 82       	std	Z+1, r1	; 0x01
-     68e:	10 82       	st	Z, r1
+     682:	a4 e9       	ldi	r26, 0x94	; 148
+     684:	b0 e0       	ldi	r27, 0x00	; 0
+     686:	11 96       	adiw	r26, 0x01	; 1
+     688:	1c 92       	st	X, r1
+     68a:	1e 92       	st	-X, r1
 			TIFR3 |= (1 << OCF3B);
-     690:	c2 9a       	sbi	0x18, 2	; 24
+     68c:	c2 9a       	sbi	0x18, 2	; 24
 		}
 		if(game.id != 1){
-     692:	f1 e0       	ldi	r31, 0x01	; 1
-     694:	9f 16       	cp	r9, r31
-     696:	09 f4       	brne	.+2      	; 0x69a <main+0xb6>
-     698:	78 c0       	rjmp	.+240    	; 0x78a <main+0x1a6>
+     68e:	b1 e0       	ldi	r27, 0x01	; 1
+     690:	9b 16       	cp	r9, r27
+     692:	09 f4       	brne	.+2      	; 0x696 <main+0xb2>
+     694:	7a c0       	rjmp	.+244    	; 0x78a <main+0x1a6>
 			switch(game.id){
-     69a:	2b e0       	ldi	r18, 0x0B	; 11
-     69c:	92 16       	cp	r9, r18
-     69e:	b9 f0       	breq	.+46     	; 0x6ce <main+0xea>
-     6a0:	29 15       	cp	r18, r9
-     6a2:	20 f0       	brcs	.+8      	; 0x6ac <main+0xc8>
-     6a4:	8a e0       	ldi	r24, 0x0A	; 10
-     6a6:	98 16       	cp	r9, r24
-     6a8:	41 f0       	breq	.+16     	; 0x6ba <main+0xd6>
-     6aa:	3f c0       	rjmp	.+126    	; 0x72a <main+0x146>
-     6ac:	9e e0       	ldi	r25, 0x0E	; 14
-     6ae:	99 16       	cp	r9, r25
-     6b0:	a1 f0       	breq	.+40     	; 0x6da <main+0xf6>
-     6b2:	af e0       	ldi	r26, 0x0F	; 15
-     6b4:	9a 16       	cp	r9, r26
-     6b6:	39 f1       	breq	.+78     	; 0x706 <main+0x122>
-     6b8:	38 c0       	rjmp	.+112    	; 0x72a <main+0x146>
+     696:	eb e0       	ldi	r30, 0x0B	; 11
+     698:	9e 16       	cp	r9, r30
+     69a:	b9 f0       	breq	.+46     	; 0x6ca <main+0xe6>
+     69c:	e9 15       	cp	r30, r9
+     69e:	20 f0       	brcs	.+8      	; 0x6a8 <main+0xc4>
+     6a0:	fa e0       	ldi	r31, 0x0A	; 10
+     6a2:	9f 16       	cp	r9, r31
+     6a4:	41 f0       	breq	.+16     	; 0x6b6 <main+0xd2>
+     6a6:	3f c0       	rjmp	.+126    	; 0x726 <main+0x142>
+     6a8:	2e e0       	ldi	r18, 0x0E	; 14
+     6aa:	92 16       	cp	r9, r18
+     6ac:	a1 f0       	breq	.+40     	; 0x6d6 <main+0xf2>
+     6ae:	8f e0       	ldi	r24, 0x0F	; 15
+     6b0:	98 16       	cp	r9, r24
+     6b2:	39 f1       	breq	.+78     	; 0x702 <main+0x11e>
+     6b4:	38 c0       	rjmp	.+112    	; 0x726 <main+0x142>
 				case 10:
 				PWM_control(game.data[0]);
-     6ba:	87 2d       	mov	r24, r7
-     6bc:	90 e0       	ldi	r25, 0x00	; 0
-     6be:	9b d2       	rcall	.+1334   	; 0xbf6 <PWM_control>
+     6b6:	87 2d       	mov	r24, r7
+     6b8:	90 e0       	ldi	r25, 0x00	; 0
+     6ba:	9d d2       	rcall	.+1338   	; 0xbf6 <PWM_control>
 				PI_regulator(game.data[3], max_encoder_value);
-     6c0:	69 89       	ldd	r22, Y+17	; 0x11
-     6c2:	7a 89       	ldd	r23, Y+18	; 0x12
-     6c4:	88 2d       	mov	r24, r8
-     6c6:	50 d1       	rcall	.+672    	; 0x968 <PI_regulator>
+     6bc:	68 89       	ldd	r22, Y+16	; 0x10
+     6be:	79 89       	ldd	r23, Y+17	; 0x11
+     6c0:	88 2d       	mov	r24, r8
+     6c2:	52 d1       	rcall	.+676    	; 0x968 <PI_regulator>
 				scorecount.score = seconds;
-     6c8:	6b 84       	ldd	r6, Y+11	; 0x0b
-     6ca:	5c 84       	ldd	r5, Y+12	; 0x0c
+     6c4:	62 2c       	mov	r6, r2
+     6c6:	3d 86       	std	Y+13, r3	; 0x0d
 				//printf("score (seconds): %d \n", seconds);
 				break;
-     6cc:	2e c0       	rjmp	.+92     	; 0x72a <main+0x146>
+     6c8:	2e c0       	rjmp	.+92     	; 0x726 <main+0x142>
 				
 				case 11:
 				joystick_drive(game.data[0],game.data[3]);
-     6ce:	68 2d       	mov	r22, r8
-     6d0:	87 2d       	mov	r24, r7
-     6d2:	01 d2       	rcall	.+1026   	; 0xad6 <joystick_drive>
+     6ca:	68 2d       	mov	r22, r8
+     6cc:	87 2d       	mov	r24, r7
+     6ce:	03 d2       	rcall	.+1030   	; 0xad6 <joystick_drive>
 				scorecount.score = seconds;
-     6d4:	6b 84       	ldd	r6, Y+11	; 0x0b
-     6d6:	5c 84       	ldd	r5, Y+12	; 0x0c
+     6d0:	62 2c       	mov	r6, r2
+     6d2:	3d 86       	std	Y+13, r3	; 0x0d
 				break;
-     6d8:	28 c0       	rjmp	.+80     	; 0x72a <main+0x146>
+     6d4:	28 c0       	rjmp	.+80     	; 0x726 <main+0x142>
 
 				case 14:
 				PWM_control(game.data[0]);
-     6da:	87 2d       	mov	r24, r7
-     6dc:	90 e0       	ldi	r25, 0x00	; 0
-     6de:	8b d2       	rcall	.+1302   	; 0xbf6 <PWM_control>
+     6d6:	87 2d       	mov	r24, r7
+     6d8:	90 e0       	ldi	r25, 0x00	; 0
+     6da:	8d d2       	rcall	.+1306   	; 0xbf6 <PWM_control>
 				PI_regulator(game.data[3], max_encoder_value);
-     6e0:	69 89       	ldd	r22, Y+17	; 0x11
-     6e2:	7a 89       	ldd	r23, Y+18	; 0x12
-     6e4:	88 2d       	mov	r24, r8
-     6e6:	40 d1       	rcall	.+640    	; 0x968 <PI_regulator>
+     6dc:	68 89       	ldd	r22, Y+16	; 0x10
+     6de:	79 89       	ldd	r23, Y+17	; 0x11
+     6e0:	88 2d       	mov	r24, r8
+     6e2:	42 d1       	rcall	.+644    	; 0x968 <PI_regulator>
 				if(!channel_change){scorecount = ir_score_update(threshold,scorecount);}
-     6e8:	a1 14       	cp	r10, r1
-     6ea:	b1 04       	cpc	r11, r1
-     6ec:	09 f5       	brne	.+66     	; 0x730 <main+0x14c>
-     6ee:	46 2d       	mov	r20, r6
-     6f0:	55 2d       	mov	r21, r5
-     6f2:	6b 89       	ldd	r22, Y+19	; 0x13
-     6f4:	7c 89       	ldd	r23, Y+20	; 0x14
-     6f6:	8f 85       	ldd	r24, Y+15	; 0x0f
-     6f8:	98 89       	ldd	r25, Y+16	; 0x10
-     6fa:	37 df       	rcall	.-402    	; 0x56a <ir_score_update>
-     6fc:	8b 8b       	std	Y+19, r24	; 0x13
-     6fe:	9c 8b       	std	Y+20, r25	; 0x14
-     700:	66 2e       	mov	r6, r22
-     702:	57 2e       	mov	r5, r23
-     704:	1e c0       	rjmp	.+60     	; 0x742 <main+0x15e>
+     6e4:	a1 14       	cp	r10, r1
+     6e6:	b1 04       	cpc	r11, r1
+     6e8:	09 f5       	brne	.+66     	; 0x72c <main+0x148>
+     6ea:	46 2d       	mov	r20, r6
+     6ec:	5d 85       	ldd	r21, Y+13	; 0x0d
+     6ee:	6a 89       	ldd	r22, Y+18	; 0x12
+     6f0:	7b 89       	ldd	r23, Y+19	; 0x13
+     6f2:	8e 85       	ldd	r24, Y+14	; 0x0e
+     6f4:	9f 85       	ldd	r25, Y+15	; 0x0f
+     6f6:	39 df       	rcall	.-398    	; 0x56a <ir_score_update>
+     6f8:	8a 8b       	std	Y+18, r24	; 0x12
+     6fa:	9b 8b       	std	Y+19, r25	; 0x13
+     6fc:	66 2e       	mov	r6, r22
+     6fe:	7d 87       	std	Y+13, r23	; 0x0d
+     700:	1e c0       	rjmp	.+60     	; 0x73e <main+0x15a>
 				break;
 				
 				case 15:
 				joystick_drive(game.data[0],game.data[3]);
-     706:	68 2d       	mov	r22, r8
-     708:	87 2d       	mov	r24, r7
-     70a:	e5 d1       	rcall	.+970    	; 0xad6 <joystick_drive>
+     702:	68 2d       	mov	r22, r8
+     704:	87 2d       	mov	r24, r7
+     706:	e7 d1       	rcall	.+974    	; 0xad6 <joystick_drive>
 				if(!channel_change){scorecount = ir_score_update(threshold,scorecount);}
-     70c:	a1 14       	cp	r10, r1
-     70e:	b1 04       	cpc	r11, r1
-     710:	79 f4       	brne	.+30     	; 0x730 <main+0x14c>
-     712:	46 2d       	mov	r20, r6
-     714:	55 2d       	mov	r21, r5
-     716:	6b 89       	ldd	r22, Y+19	; 0x13
-     718:	7c 89       	ldd	r23, Y+20	; 0x14
-     71a:	8f 85       	ldd	r24, Y+15	; 0x0f
-     71c:	98 89       	ldd	r25, Y+16	; 0x10
-     71e:	25 df       	rcall	.-438    	; 0x56a <ir_score_update>
-     720:	8b 8b       	std	Y+19, r24	; 0x13
-     722:	9c 8b       	std	Y+20, r25	; 0x14
-     724:	66 2e       	mov	r6, r22
-     726:	57 2e       	mov	r5, r23
-     728:	0c c0       	rjmp	.+24     	; 0x742 <main+0x15e>
+     708:	a1 14       	cp	r10, r1
+     70a:	b1 04       	cpc	r11, r1
+     70c:	79 f4       	brne	.+30     	; 0x72c <main+0x148>
+     70e:	46 2d       	mov	r20, r6
+     710:	5d 85       	ldd	r21, Y+13	; 0x0d
+     712:	6a 89       	ldd	r22, Y+18	; 0x12
+     714:	7b 89       	ldd	r23, Y+19	; 0x13
+     716:	8e 85       	ldd	r24, Y+14	; 0x0e
+     718:	9f 85       	ldd	r25, Y+15	; 0x0f
+     71a:	27 df       	rcall	.-434    	; 0x56a <ir_score_update>
+     71c:	8a 8b       	std	Y+18, r24	; 0x12
+     71e:	9b 8b       	std	Y+19, r25	; 0x13
+     720:	66 2e       	mov	r6, r22
+     722:	7d 87       	std	Y+13, r23	; 0x0d
+     724:	0c c0       	rjmp	.+24     	; 0x73e <main+0x15a>
 				break;
 			}
 			if(channel_change){
-     72a:	a1 14       	cp	r10, r1
-     72c:	b1 04       	cpc	r11, r1
-     72e:	49 f0       	breq	.+18     	; 0x742 <main+0x15e>
+     726:	a1 14       	cp	r10, r1
+     728:	b1 04       	cpc	r11, r1
+     72a:	49 f0       	breq	.+18     	; 0x73e <main+0x15a>
 				ir_bottom = ir_score_update(threshold, ir_bottom);
-     730:	61 01       	movw	r12, r2
-     732:	b7 01       	movw	r22, r14
-     734:	a6 01       	movw	r20, r12
-     736:	8f 85       	ldd	r24, Y+15	; 0x0f
-     738:	98 89       	ldd	r25, Y+16	; 0x10
-     73a:	17 df       	rcall	.-466    	; 0x56a <ir_score_update>
-     73c:	6b 01       	movw	r12, r22
-     73e:	7c 01       	movw	r14, r24
-     740:	1b 01       	movw	r2, r22
+     72c:	62 01       	movw	r12, r4
+     72e:	b7 01       	movw	r22, r14
+     730:	a6 01       	movw	r20, r12
+     732:	8e 85       	ldd	r24, Y+14	; 0x0e
+     734:	9f 85       	ldd	r25, Y+15	; 0x0f
+     736:	19 df       	rcall	.-462    	; 0x56a <ir_score_update>
+     738:	6b 01       	movw	r12, r22
+     73a:	7c 01       	movw	r14, r24
+     73c:	2b 01       	movw	r4, r22
 				//printf("ir_bottom = %d	channel_change = %d\n", ir_bottom.score, channel_change);
 				}
 			if(ir_bottom.score > 0){
-     742:	12 14       	cp	r1, r2
-     744:	13 04       	cpc	r1, r3
-     746:	94 f4       	brge	.+36     	; 0x76c <main+0x188>
+     73e:	14 14       	cp	r1, r4
+     740:	15 04       	cpc	r1, r5
+     742:	a4 f4       	brge	.+40     	; 0x76c <main+0x188>
 				game.data[7] = scorecount.score;
-     748:	6a 86       	std	Y+10, r6	; 0x0a
+     744:	6a 86       	std	Y+10, r6	; 0x0a
 				printf("score: %d\n", scorecount.score);
-     74a:	5f 92       	push	r5
-     74c:	6f 92       	push	r6
-     74e:	a0 e6       	ldi	r26, 0x60	; 96
-     750:	b2 e0       	ldi	r27, 0x02	; 2
-     752:	bf 93       	push	r27
-     754:	af 93       	push	r26
-     756:	5c d5       	rcall	.+2744   	; 0x1210 <printf>
+     746:	9d 85       	ldd	r25, Y+13	; 0x0d
+     748:	9f 93       	push	r25
+     74a:	6f 92       	push	r6
+     74c:	a0 e6       	ldi	r26, 0x60	; 96
+     74e:	b2 e0       	ldi	r27, 0x02	; 2
+     750:	bf 93       	push	r27
+     752:	af 93       	push	r26
+     754:	5d d5       	rcall	.+2746   	; 0x1210 <printf>
+				game.data[6] = seconds;
+     756:	29 86       	std	Y+9, r2	; 0x09
      758:	0f 90       	pop	r0
      75a:	0f 90       	pop	r0
      75c:	0f 90       	pop	r0
@@ -1458,22 +1453,22 @@ int main(void){
 				game.id = 0x01;
      760:	99 24       	eor	r9, r9
      762:	93 94       	inc	r9
-				}
 			if(ir_bottom.score > 0){
 				game.data[7] = scorecount.score;
 				printf("score: %d\n", scorecount.score);
+				game.data[6] = seconds;
 				seconds = 0;
 				ir_bottom.score = 0;
-     764:	21 2c       	mov	r2, r1
-     766:	34 2c       	mov	r3, r4
-				//printf("ir_bottom = %d	channel_change = %d\n", ir_bottom.score, channel_change);
+     764:	41 2c       	mov	r4, r1
+     766:	51 2c       	mov	r5, r1
 				}
 			if(ir_bottom.score > 0){
 				game.data[7] = scorecount.score;
 				printf("score: %d\n", scorecount.score);
+				game.data[6] = seconds;
 				seconds = 0;
-     768:	1b 86       	std	Y+11, r1	; 0x0b
-     76a:	4c 86       	std	Y+12, r4	; 0x0c
+     768:	21 2c       	mov	r2, r1
+     76a:	31 2c       	mov	r3, r1
 				ir_bottom.score = 0;
 				game.id = 0x01;
 				}
@@ -1499,7 +1494,7 @@ int main(void){
 			else{
 				scorecount.score = 0;
      78a:	61 2c       	mov	r6, r1
-     78c:	51 2c       	mov	r5, r1
+     78c:	1d 86       	std	Y+13, r1	; 0x0d
      78e:	ff ef       	ldi	r31, 0xFF	; 255
      790:	21 ee       	ldi	r18, 0xE1	; 225
      792:	84 e0       	ldi	r24, 0x04	; 4
@@ -1509,7 +1504,7 @@ int main(void){
      79a:	e1 f7       	brne	.-8      	; 0x794 <main+0x1b0>
      79c:	00 c0       	rjmp	.+0      	; 0x79e <main+0x1ba>
      79e:	00 00       	nop
-     7a0:	55 cf       	rjmp	.-342    	; 0x64c <main+0x68>
+     7a0:	54 cf       	rjmp	.-344    	; 0x64a <main+0x66>
 
 000007a2 <select_CAN>:
 uint8_t MCP_read_status(){

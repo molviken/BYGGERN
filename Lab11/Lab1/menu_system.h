@@ -36,7 +36,7 @@ typedef struct{
 	struct MENU *sub;
 }MENU;
 
-	
+void save_highscore(uint8_t highscore);	
 MENU* init_menu(char *title);
 MENU* menu_add_submenu(MENU *parent, void (*goto_func)(), char*name);
 MENU* menu_add_node(MENU *over, MENU *under, void (*goto_func)(), char*name);

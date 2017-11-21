@@ -56,18 +56,9 @@ int main(void)
 	//oled_print("main1,main2,main3,amin3",0x01,0x09,0x11);
 	
 	
-	//EEPROMTEST
-	uint8_t Adr = 0x01;
-	uint8_t Data = 0x02;
-	EEPROM_write(Adr, Data);
-	char* dat = EEPROM_read(Adr);
-	printf("data inn %x, data ut %x", Data, dat);
-	
-	
-	
 	while(1)
     {
-		//main_menu = menu_nav(main_menu);	
+		main_menu = menu_nav(main_menu);	
 		
 		
 		//usb_board.data[0] = (uint8_t)read_joystick_position(channel1, channel2).x_pos;

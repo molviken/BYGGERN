@@ -155,4 +155,6 @@ int start_game(int mode, int opt){
 		CAN_transmit(chosen_game);
 		_delay_ms(10);
 	}
+	printf("%d\n", game_over_check.data[6]);
+	save_highscore(game_over_check.data[6]);
 }
