@@ -5,38 +5,37 @@
  *  Author: oystmol
  */ 
 #include <util/delay.h>
-#define set_bit( reg, bit ) (reg |= (1 << bit))
-#define clear_bit( reg, bit ) (reg &= ~(1 << bit))
-#define test_bit( reg, bit ) (reg & (1 << bit))
-#define loop_until_bit_is_set( reg, bit ) while( !test_bit( reg, bit ) )
-#define loop_until_bit_is_clear( reg, bit ) while( test_bit( reg, bit ) )
-#include "joystick.h"
-#include "adc.h"
+#include <avr/io.h>
 #include <stdbool.h>
+#include "bit_operations.h"
+#include "usb_board_inputs.h"
+#include "adc.h"
+
+
+
 struct Menu_position pos;
 struct Joystick read_joystick_position(uint8_t channel_one, uint8_t channel_two){
-	int x_pos = (adc_read(channel_two));//-134)*0.8264462809917355;
-	int y_pos = (adc_read(channel_one));//-133)*0.819672131147541;
+	int x_pos = (adc_read(channel_two));
+	int y_pos = (adc_read(channel_one));
 
 	if (y_pos < 0) {y_pos = 0;}
 	if (x_pos < 0) {x_pos = 0;}
 	//if (y_pos > 255) {y_pos = 255;}
 	//if (x_pos > 255) {x_pos = 255;}
-	struct Joystick global_joystick;
-	global_joystick.x_pos = x_pos;
-	global_joystick.y_pos = y_pos;
-	//printf("X: %i, Y: %i \n", x_pos,y_pos);
+	struct Joystick temp;
+	temp.x_pos = x_pos;
+	temp.y_pos = y_pos;
 
-	return global_joystick;
+	return temp;
 }
 struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two){
 	int slider1 = adc_read(channel_one);
 	//_delay_ms(100);
 	int slider2 = adc_read(channel_two);
-	struct Slider global_slider;
-	global_slider.slider1 = slider1;
-	global_slider.slider2 = slider2;
-	return global_slider;
+	struct Slider temp;
+	temp.slider1 = slider1;
+	temp.slider2 = slider2;
+	return temp;
 	//printf("Slider 1: %i, Slider 2: %i \n", slider1,slider2);
 }
 uint8_t joystick_pressed(){
@@ -68,17 +67,6 @@ uint8_t slider_button(){
 		//printf("Current page is: %x \n ", pos.current_page);
 		return pos.current_page;
 	}
-}
-
-struct Slider get_slider_pos(){
-	struct Slider temp;
-	temp = read_slider_position(channel3,channel4);
-	return temp;
-}
-struct Joystick get_joy_pos(){
-	struct Joystick temp;
-	temp = read_joystick_position(channel1,channel2);
-	return temp;
 }
 
 int sonoid_button(){

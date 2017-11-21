@@ -40,15 +40,13 @@ C_SRCS +=  \
 ../adc.c \
 ../CAN_bus.c \
 ../Eeprom.c \
-../joystick.c \
-../joystick_can.c \
+../usb_board_inputs.c \
 ../main.c \
 ../MCPkontroll.c \
 ../menu_system.c \
 ../oled.c \
 ../SPI.c \
 ../testMemory.c \
-../tests.c \
 ../menu_functions.c \
 ../uart.c
 
@@ -63,15 +61,13 @@ OBJS +=  \
 adc.o \
 CAN_bus.o \
 Eeprom.o \
-joystick.o \
-joystick_can.o \
+usb_board_inputs.o \
 main.o \
 MCPkontroll.o \
 menu_system.o \
 oled.o \
 SPI.o \
 testMemory.o \
-tests.o \
 menu_functions.o \
 uart.o
 
@@ -79,15 +75,13 @@ OBJS_AS_ARGS +=  \
 adc.o \
 CAN_bus.o \
 Eeprom.o \
-joystick.o \
-joystick_can.o \
+usb_board_inputs.o \
 main.o \
 MCPkontroll.o \
 menu_system.o \
 oled.o \
 SPI.o \
 testMemory.o \
-tests.o \
 menu_functions.o \
 uart.o
 
@@ -95,15 +89,13 @@ C_DEPS +=  \
 adc.d \
 CAN_bus.d \
 Eeprom.d \
-joystick.d \
-joystick_can.d \
+usb_board_inputs.d \
 main.d \
 MCPkontroll.d \
 menu_system.d \
 oled.d \
 SPI.d \
 testMemory.d \
-tests.d \
 menu_functions.d \
 uart.d
 
@@ -111,15 +103,13 @@ C_DEPS_AS_ARGS +=  \
 adc.d \
 CAN_bus.d \
 Eeprom.d \
-joystick.d \
-joystick_can.d \
+usb_board_inputs.d \
 main.d \
 MCPkontroll.d \
 menu_system.d \
 oled.d \
 SPI.d \
 testMemory.d \
-tests.d \
 menu_functions.d \
 uart.d
 
@@ -137,10 +127,6 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-
-
-
-
 
 
 

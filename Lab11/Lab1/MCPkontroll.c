@@ -4,10 +4,13 @@
  * Created: 02.10.2017 11:43:29
  *  Author: arefv
  */ 
+#include <avr/io.h>
+#include "bit_operations.h"
+#include "SPI.h"
 #include "MCPkontroll.h"
 #include "MCP2515.h"
 #define DD_SS PB4
-#include "SPI.h"
+
 
 void select_CAN(void){
 	clear_bit(PORTB, DD_SS);

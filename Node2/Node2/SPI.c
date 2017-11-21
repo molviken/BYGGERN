@@ -4,7 +4,8 @@
  * Created: 02.10.2017 10:40:42
  *  Author: arefv
  */ 
-
+#include <avr/io.h>
+#include <stdlib.h>
 #define DD_MOSI PB2
 #define DD_SCK PB1
 #define DD_MISO PB3

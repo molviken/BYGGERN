@@ -37,23 +37,18 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../adc.c \
 ../adc_node2.c \
 ../CAN_bus.c \
 ../dac.c \
 ../game_options.c \
 ../ir_detector.c \
-../joystick.c \
-../joystick_can.c \
 ../main.c \
 ../MCPkontroll.c \
 ../motor.c \
-../pi.c \
+../PID.c \
 ../sonoid.c \
 ../SPI.c \
 ../pwm.c \
-../storage.c \
-../timer.c \
 ../TWI_Master.c \
 ../uart.c
 
@@ -65,86 +60,66 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-adc.o \
 adc_node2.o \
 CAN_bus.o \
 dac.o \
 game_options.o \
 ir_detector.o \
-joystick.o \
-joystick_can.o \
 main.o \
 MCPkontroll.o \
 motor.o \
-pi.o \
+PID.o \
 sonoid.o \
 SPI.o \
 pwm.o \
-storage.o \
-timer.o \
 TWI_Master.o \
 uart.o
 
 OBJS_AS_ARGS +=  \
-adc.o \
 adc_node2.o \
 CAN_bus.o \
 dac.o \
 game_options.o \
 ir_detector.o \
-joystick.o \
-joystick_can.o \
 main.o \
 MCPkontroll.o \
 motor.o \
-pi.o \
+PID.o \
 sonoid.o \
 SPI.o \
 pwm.o \
-storage.o \
-timer.o \
 TWI_Master.o \
 uart.o
 
 C_DEPS +=  \
-adc.d \
 adc_node2.d \
 CAN_bus.d \
 dac.d \
 game_options.d \
 ir_detector.d \
-joystick.d \
-joystick_can.d \
 main.d \
 MCPkontroll.d \
 motor.d \
-pi.d \
+PID.d \
 sonoid.d \
 SPI.d \
 pwm.d \
-storage.d \
-timer.d \
 TWI_Master.d \
 uart.d
 
 C_DEPS_AS_ARGS +=  \
-adc.d \
 adc_node2.d \
 CAN_bus.d \
 dac.d \
 game_options.d \
 ir_detector.d \
-joystick.d \
-joystick_can.d \
 main.d \
 MCPkontroll.d \
 motor.d \
-pi.d \
+PID.d \
 sonoid.d \
 SPI.d \
 pwm.d \
-storage.d \
-timer.d \
 TWI_Master.d \
 uart.d
 
@@ -162,16 +137,6 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-
-
-
-
-
-
-
-
-
-
 
 
 

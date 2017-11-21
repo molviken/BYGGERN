@@ -6,6 +6,8 @@
  */ 
 #include "MCPkontroll.h"
 #include "MCP2515.h"
+#include "SPI.h"
+#include "bit_operations.h"
 #define DD_SS PB7
 
 void select_CAN(void){

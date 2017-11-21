@@ -4,16 +4,13 @@
  * Created: 18.09.2017 11:31:37
  *  Author: oystmol
  */ 
-#define set_bit( reg, bit ) (reg |= (1 << bit))
-#define clear_bit( reg, bit ) (reg &= ~(1 << bit))
-#define test_bit( reg, bit ) (reg & (1 << bit))
-#define loop_until_bit_is_set( reg, bit ) while( !test_bit( reg, bit ) )
-#define loop_until_bit_is_clear( reg, bit ) while( test_bit( reg, bit ) )
-#include "adc.h"
+
 #include <string.h>
-#include "uart.h"
 #include <avr/io.h>
 #include <util/delay.h>
+#include "bit_operations.h"
+#include "adc.h"
+
 void adc_init(void){
 	set_bit(MCUCR,SRE);
 	set_bit(SFIOR,XMM2);

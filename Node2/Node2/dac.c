@@ -4,6 +4,8 @@
  * Created: 13.11.2017 10:46:02
  *  Author: oystmol
  */ 
+#include <avr/io.h>
+#include <stdlib.h>
 #include "dac.h"
 #include "TWI_Master.h"
 #define SLAVE_ADDRESS_WRITE 0x50;

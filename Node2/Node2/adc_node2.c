@@ -1,45 +1,40 @@
-/*
- * adc.c
- *
- * Created: 06.11.2017 15:51:31
- *  Author: oystmol
- */ 
-//#include "libarduino.c"
-//#include <rtm.h>
-#define set_bit( reg, bit ) (reg |= (1 << bit))
-#define clear_bit( reg, bit ) (reg &= ~(1 << bit))
+
+
+#define F_CPU 16000000
 #include <avr/io.h>
 #include <util/delay.h>
 #include "adc_node2.h"
+#include "bit_operations.h"
+
+
 int ADC_ready = 0;
 
 void adc_node2_switch(int channel){
 	//Use channel 1
 	switch(channel){
 		case 0:
-
-			ADMUX &= ~(1 << MUX4) & ~(1 << MUX3) & ~(1 << MUX2) & ~(1 << MUX1) & ~(1 << MUX0);
-					set_bit(PINF,PF1);
-					clear_bit(PINF,PF0);
-			break;
+		ADMUX &= ~(1 << MUX4) & ~(1 << MUX3) & ~(1 << MUX2) & ~(1 << MUX1) & ~(1 << MUX0);
+		set_bit(PINF,PF1);
+		clear_bit(PINF,PF0);
+		break;
+		
 		case 1:
+		ADMUX &= ~(1 << MUX4) & ~(1 << MUX3) & ~(1 << MUX2) & ~(1 << MUX1);
+		set_bit(ADMUX, MUX0);
+		set_bit(PINF,PF0);
+		clear_bit(PINF,PF1);
+		break;
 
-			ADMUX &= ~(1 << MUX4) & ~(1 << MUX3) & ~(1 << MUX2) & ~(1 << MUX1);
-			set_bit(ADMUX, MUX0);
-					set_bit(PINF,PF0);
-					clear_bit(PINF,PF1);
-			break;
 		default:
-			break;
+		break;
 	}
-
 }
+
 void adc_node2_init(void) {
 	//Use AVCC as reference, result left adjusted
 	ADMUX |= (1 << REFS0) | (1 << REFS1);
 	// Use channel 0
 	ADMUX &= ~(1 << MUX4) & ~(1 << MUX3) & ~(1 << MUX2) & ~(1 << MUX1) & ~(1 << MUX0);
-	
 	//Enable ADC
 	set_bit(ADCSRA, ADEN);
 	//Set prescalar 128
@@ -55,7 +50,7 @@ void adc_node2_init(void) {
 
 }
 
-uint16_t ADC_node2_read(void) {
+uint16_t adc_node2_read(void) {
 	//Start the ADC
 	ADCSRA |= (1 << ADSC);
 	_delay_us(50);
@@ -65,11 +60,6 @@ uint16_t ADC_node2_read(void) {
 	
 	
 }
-//
-//void ADC_node2_stop(void) {
-	////Stop the ADC
-	//ADCSRA &= ~(1 << ADEN);
-//}
 
 /*
 ISR(ADC_vect){

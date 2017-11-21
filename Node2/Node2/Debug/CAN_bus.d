@@ -20,7 +20,7 @@ CAN_bus.d CAN_bus.o: .././CAN_bus.c .././CAN_bus.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h \
- .././MCP2515.h .././MCPkontroll.h .././uart.h
+ .././MCP2515.h .././MCPkontroll.h .././bit_operations.h
 
 .././CAN_bus.h:
 
@@ -70,4 +70,4 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 .././MCPkontroll.h:
 
-.././uart.h:
+.././bit_operations.h:

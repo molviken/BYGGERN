@@ -4,6 +4,8 @@
  * Created: 21.11.2017 06:39:14
  *  Author: arefv
  */ 
+#include <avr/io.h>
+#include "bit_operations.h"
 #include "Eeprom.h"
 
 void EEPROM_write(uint8_t uiAddress, uint8_t ucData){

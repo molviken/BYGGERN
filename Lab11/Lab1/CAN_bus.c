@@ -4,10 +4,15 @@
  * Created: 02.10.2017 13:38:20
  *  Author: arefv
  */ 
+#include <avr/io.h>
+#include "bit_operations.h"
 #include "CAN_bus.h"
 #include "MCP2515.h"
 #include "MCPkontroll.h"
-#include "joystick.h"
+#include "usb_board_inputs.h"
+#include "adc.h"
+
+
 uint8_t rx_flag = 0;
 
 void CAN_init(){
@@ -139,19 +144,13 @@ int start_game(int mode, int opt){
 			break;
 		}
 	}
-	//// receiving data from bus every 10 ms.
-	//if(TIFR & (1 << OCF1B)){ // if counter has reached OCR1B
-		//game_over_check = CAN_receive();
-		//TCNT1 = 0;
-		//TIFR |= (1 << OCF1B);
-	//}
 	while(game_over_check.id != 1){
 		game_over_check = CAN_receive();
 		joy = read_joystick_position(channel1, channel2);
 		sli = read_slider_position(channel3, channel4);
 		chosen_game.data[0] = (uint8_t)joy.x_pos;
 		chosen_game.data[3] = (uint8_t)sli.slider2;
-		printf("trans id: %d rec id: %d  \n",chosen_game.id, game_over_check.id);
+		//printf("trans id: %d rec id: %d  \n",chosen_game.id, game_over_check.id);
 		CAN_transmit(chosen_game);
 		_delay_ms(10);
 	}

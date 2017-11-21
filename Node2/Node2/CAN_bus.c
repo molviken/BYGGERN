@@ -7,9 +7,9 @@
 #include "CAN_bus.h"
 #include "MCP2515.h"
 #include "MCPkontroll.h"
-
+#include "bit_operations.h"
 uint8_t rx_flag = 0;
-void CAN_timer_setup(){
+void CAN_timer_init(){
 	// setting up timer 3
 	set_bit(TCCR5B, CS51);	//Prescalar 8
 	set_bit(TCCR5B, WGM52); //Set CTC mode, TOP at OCR5A
@@ -31,9 +31,7 @@ void CAN_init(){
 	{
 		printf("NOT in normal mode!\n");
 	}
-	
 	char temp = MCP_read(MCP_CANCTRL);
-	
 }
 
 int CAN_transmit(struct CAN_message message){
@@ -93,8 +91,6 @@ struct CAN_message CAN_receive(void){
 		for(uint8_t i = 0; i < new_message.length; i++){
 			new_message.data[i] = MCP_read(MCP_RXB0D0 + i);
 		}
-		
-	
 	}
 
 	else{

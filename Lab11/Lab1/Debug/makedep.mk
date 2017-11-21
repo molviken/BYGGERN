@@ -8,9 +8,7 @@ CAN_bus.c
 
 Eeprom.c
 
-joystick.c
-
-joystick_can.c
+usb_board_inputs.c
 
 main.c
 
@@ -23,8 +21,6 @@ oled.c
 SPI.c
 
 testMemory.c
-
-tests.c
 
 menu_functions.c
 

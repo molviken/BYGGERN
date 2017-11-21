@@ -112,16 +112,13 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="adc.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="adc.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="adc_node2.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="adc_node2.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="bit_operations.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="CAN_bus.c">
@@ -136,9 +133,6 @@
     <Compile Include="dac.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="fonts.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="game_options.c">
       <SubType>compile</SubType>
     </Compile>
@@ -149,18 +143,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="ir_detector.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="joystick.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="joystick.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="joystick_can.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="joystick_can.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
@@ -181,10 +163,10 @@
     <Compile Include="motor.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="pi.c">
+    <Compile Include="PID.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="pi.h">
+    <Compile Include="PID.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="sonoid.c">
@@ -203,15 +185,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="pwm.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="storage.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="timer.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="timer.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="TWI_Master.c">

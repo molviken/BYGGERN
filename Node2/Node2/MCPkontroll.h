@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "MCP2515.h"
-#include "uart.h"
+//#include "uart.h"
 
 void select_CAN(void);
 void deselect_CAN(void);

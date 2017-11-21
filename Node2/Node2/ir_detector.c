@@ -4,13 +4,18 @@
  * Created: 06.11.2017 15:30:52
  *  Author: oystmol
  */ 
+#include <avr/io.h>
+#include <stdlib.h>
 #include "ir_detector.h"
 #include "adc_node2.h"
+#include "bit_operations.h"
+
+
+
 uint16_t ir_threshold(uint16_t filterTrigger){
 	uint16_t mean = 0;
 	for (int i = 0; i<filterTrigger; i++){
-		mean += ADC_node2_read();
-		//printf("målinger: %x \n", ADC_node2_read());
+		mean += adc_node2_read();
 		_delay_ms(10);
 	}
 	mean = mean/(filterTrigger*0x2);
@@ -22,7 +27,7 @@ int ir_detection(uint16_t filterTrigger, uint16_t threshold){
 	uint16_t mean = 0;
 	
 	for (int i = 0; i<filterTrigger; i++){
-		mean += ADC_node2_read();
+		mean += adc_node2_read();
 	}
 	mean = mean/filterTrigger;
 	//printf("mean: %d \n", mean);

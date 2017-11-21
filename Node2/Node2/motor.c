@@ -1,23 +1,14 @@
-/*
- * motor.c
- *
- * Created: 13.11.2017 10:11:17
- *  Author: oystmol
- */ 
 
-#define set_bit( reg, bit ) (reg |= (1 << bit))
-#define clear_bit( reg, bit ) (reg &= ~(1 << bit))
-#include "motor.h"
-#include "TWI_Master.h"
-#include "dac.h"
-#include "pi.h"
+#define F_CPU 16000000
 #include <stdlib.h>
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <util/delay.h>
-#define dt 0.1
-static int16_t encoder_maxvalue;
-static int16_t reference_value = 0;
+#include "bit_operations.h"
+#include "motor.h"
+#include "dac.h"
+
+
 
 void motor_init(){
 	//set_bit(TWCR, TWEN);
@@ -45,7 +36,6 @@ void motor_change_dir(int direction){
 	else{
 	
 		//dac_write(0x00);
-		printf("etter dac write\n");
 	}
 }
 
@@ -103,34 +93,21 @@ int16_t motor_set_enc_maxval(){
 	_delay_ms(1000);
 	return motor_read();
 }
-//struct PI_reg motor_reg_init(){
-	//struct PI_reg regulator;
-	//regulator.Kp = -0x1p-1;
-	//regulator.Ki = 1;
-	//regulator.T = 1;
-	//return regulator;
-//}
 
-//struct PI_reg motor_reg_calc(uint8_t slider_right){
-	//// Regulator parameters
-	//struct PI_reg reg;
-	//reg.Kp = 1;
-	//reg.r = (uint16_t)slider_right*0x0021;
-	//reg.y = motor_read();
-	//reg.e = reg.r-reg.y;
-	//reg.u = reg.Kp*reg.e + reg.e*dt;
-	////printf("r: %d		y: %d	e: %d		u: %d		kp: %d \n",reg.r,reg.y,reg.e,reg.u, reg.Kp);
-	//return reg;	
-//}
-int8_t motor_speed_control(int8_t u){
-	int8_t speed = (int8_t)(u);
-	if (speed > 0xff){speed = 0xff;}
-	else if (speed < 0x00){speed = -speed;}
-	return speed;
-}
-void motor_position_control(uint8_t slider_right, struct PI_reg reg){
-
-	int8_t speed;	
-	speed = motor_speed_control(speed);
-	//printf("y: %d	  r: %d	   speed: %d	u: %d	e: %d	 kp: %d \n", reg.y, reg.r,speed, reg.u, reg.e, reg.Kp);
+void joystick_drive(uint8_t x_pos, uint8_t servo){
+	uint8_t speed;
+	PWM_control(servo);
+	if(x_pos>137){
+		speed = (x_pos- 137)*0x1.6p-1;
+		Go_Right;
+	}
+	else if(x_pos<127){
+		speed = (127 - x_pos)*0x1.6p-1;
+		Go_Left;
+	}
+	else{
+		speed = 0x00;
+	}
+	//printf("X: %d		speed: %d\n",x_pos,speed);
+	dac_write(speed);
 }

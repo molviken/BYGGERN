@@ -1,7 +1,7 @@
 #include <avr/io.h>
-#include "uart.h"
 #include <stdlib.h>
-
+#include "uart.h"
+#include "bit_operations.h"
 //void EXT_MEM_Init(void){
 	//set_bit(MCUCR,SRE);
 	//set_bit(SFIOR,XMM2);

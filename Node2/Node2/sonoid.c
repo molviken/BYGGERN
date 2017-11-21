@@ -4,12 +4,10 @@
  * Created: 16.11.2017 17:40:21
  *  Author: oystmol
  */ 
-#define F_CPU 16000000
 #include <avr/io.h>
-#include <util/delay.h>
+#include <stdlib.h>
 #include "sonoid.h"
-#define set_bit( reg, bit ) (reg |= (1 << bit))
-#define clear_bit( reg, bit ) (reg &= ~(1 << bit))
+#include "bit_operations.h"
 
 
 struct Sonoid sonoid_fire(struct Sonoid shooter){

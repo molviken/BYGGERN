@@ -5,12 +5,13 @@
  *  Author: oystmol
  */ 
 #include <stdbool.h>
+#include <avr/io.h>
+#include "bit_operations.h"
 #include "oled.h"
-#include "joystick.h"
 #include "fonts.h"
-#include "menu_system.h"
 
-struct Menu_position pos;
+
+//struct Menu_position pos;
 
 int coloumn_counter = 0;
 int tall = 0;
@@ -73,14 +74,12 @@ void oled_clear_page(uint8_t page){
 
 void oled_print_letter(char letter,uint8_t page, uint8_t coloumn_start,uint8_t coloumn_end){
 	
-	//uint8_t char_alfa[8] = font8[34];
 	oled_pos(page, coloumn_start, coloumn_end);
 	int ltr;
 	for (int i = 0;i<8;i++){
 		ltr = pgm_read_byte(&(font8[letter-32][i]));
 		write_d(ltr);
 	}
-	//printf("printet letter\n");
 }
 void oled_pos(uint8_t page,uint8_t coloumn_start,uint8_t coloumn_end){
 	oled_goto_page(page);

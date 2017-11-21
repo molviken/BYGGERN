@@ -2,8 +2,6 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-adc.c
-
 adc_node2.c
 
 CAN_bus.c
@@ -14,27 +12,19 @@ game_options.c
 
 ir_detector.c
 
-joystick.c
-
-joystick_can.c
-
 main.c
 
 MCPkontroll.c
 
 motor.c
 
-pi.c
+PID.c
 
 sonoid.c
 
 SPI.c
 
 pwm.c
-
-storage.c
-
-timer.c
 
 TWI_Master.c
 

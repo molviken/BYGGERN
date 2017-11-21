@@ -5,6 +5,5 @@
  *  Author: oystmol
  */ 
 void adc_node2_init();
-uint16_t ADC_node2_read();
-void ADC_node2_stop();
+uint16_t adc_node2_read();
 void adc_node2_switch(int channel);

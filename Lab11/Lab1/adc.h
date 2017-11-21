@@ -13,10 +13,6 @@
 #include <avr/sleep.h>
 #include <stdlib.h>
 #include <stdio.h>
-//#include <time.h>
-
 
 void adc_init();
 uint8_t adc_read(uint8_t channel);
-struct Joystick read_joystick_position(uint8_t channel_one, uint8_t channel_two);
-struct Slider read_slider_position(uint8_t channel_one, uint8_t channel_two);

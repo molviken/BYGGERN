@@ -23,4 +23,4 @@ int CAN_check_error(void);
 int CAN_completed_transmit(void);
 void CAN_int_vect(void);
 struct CAN_message CAN_receive(void);
-void CAN_timer_setup();
+void CAN_timer_init();

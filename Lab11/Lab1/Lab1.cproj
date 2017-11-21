@@ -115,10 +115,16 @@
     <Compile Include="adc.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="bit_operations.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="CAN_bus.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="CAN_bus.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DEFINITIONS.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Eeprom.c">
@@ -130,16 +136,10 @@
     <Compile Include="Eeprom.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="joystick.c">
+    <Compile Include="usb_board_inputs.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="joystick.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="joystick_can.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="joystick_can.h">
+    <Compile Include="usb_board_inputs.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
@@ -173,12 +173,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="testMemory.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="tests.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="tests.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="menu_functions.c">
